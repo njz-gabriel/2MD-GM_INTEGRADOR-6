@@ -51,9 +51,6 @@ Este é um projeto base que utiliza uma arquitetura moderna de desenvolvimento f
 │   ├── package.json        # Dependências do frontend
 │   └── next.config.mjs     # Configuração do Next.js
 │
-├── bd/                     # Scripts SQL adicionais
-│   └── schema.sql          # Schema do banco de dados
-│
 ├── docs/                   # Documentação do projeto
 │   └── docs.md             # Documentação adicional
 │
