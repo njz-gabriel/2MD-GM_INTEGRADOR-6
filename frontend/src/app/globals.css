@@ -1,46 +1,50 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+	max-width: 100vw;
+	overflow-x: hidden;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	color: var(--foreground);
+	background: var(--background);
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	padding: 0;
+	height: 100vh;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+	html {
+		color-scheme: dark;
+	}
 }
 
+<<<<<<< HEAD
 @font-face {
   font-family: 'productsans';
   src: url('/fontes/Product Sans Regular.ttf') format('truetype');
@@ -54,3 +58,27 @@ a {
   font-weight: 700;
   font-style: normal;
 }
+=======
+/* CRIAR CLASSES A PARTIR DAQUI!!!! */
+
+.azul1 {
+	color: #005DAA;
+}
+.fundoAzul1 {
+	background-color: #005DAA;
+	color: white;
+}
+.btn-azul {
+	background-color: #005DAA !important;
+	color: white !important;
+}
+.btn-azul:hover {
+	background-color: #005DAA9d !important;
+}
+
+.imgCompleta {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+>>>>>>> 887f7585d320456666b5d27e1a6e467d0cb085a4
