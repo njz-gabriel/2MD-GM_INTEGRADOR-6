@@ -44,7 +44,6 @@ a {
 	}
 }
 
-<<<<<<< HEAD
 @font-face {
   font-family: 'productsans';
   src: url('/fontes/Product Sans Regular.ttf') format('truetype');
@@ -58,7 +57,6 @@ a {
   font-weight: 700;
   font-style: normal;
 }
-=======
 /* CRIAR CLASSES A PARTIR DAQUI!!!! */
 
 .azul1 {
@@ -81,4 +79,3 @@ a {
 	height: 100%;
 	object-fit: contain;
 }
->>>>>>> 887f7585d320456666b5d27e1a6e467d0cb085a4

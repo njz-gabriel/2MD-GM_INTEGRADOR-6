@@ -4,7 +4,6 @@ import './main.css';
 
 export default function Home() {
   return (<>
-<<<<<<< HEAD
 
     <div className="subtitles fontetop size-fonte">
       <div className="border-gm-color">
@@ -33,8 +32,4 @@ export default function Home() {
 
   </>
   );
-=======
-  
-  </>);
->>>>>>> 887f7585d320456666b5d27e1a6e467d0cb085a4
 }
