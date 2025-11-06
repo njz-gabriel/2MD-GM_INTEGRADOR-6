@@ -1,6 +1,20 @@
+/* Ocultando o footer e o header */
+footer, header {
+    display: none;
+}
+
+/* Link */
+a {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+a:hover {color: #2125297d !important;}
+
+
+/* Classes */
 .form-signin {
-  width: 330px;
-  padding: 1rem;
+  width: 300px;
+  /* padding: 1rem; */
 }
 
 .form-signin .form-floating:focus-within {
@@ -18,9 +32,3 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-a {
-    text-decoration: underline !important;
-    cursor: pointer;
-}
-a:hover {color: #2125297d !important;}
