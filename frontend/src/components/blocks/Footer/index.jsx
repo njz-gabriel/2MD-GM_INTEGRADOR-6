@@ -1,8 +1,18 @@
-"use client";
-import Link from "next/link";
+'use client'
+
+import { usePathname } from "next/navigation";
+
+
 import "./footer.css"
 
+
 export default function Footer() {
+  // Retornando uma tag vazia em páginas que não têm Navbar
+  const pathname = usePathname();
+  if (["/login"].includes(pathname)) {
+    return <></>;
+  }
+
   return (
     // <footer className="bg-light text-dark mt-5 border-top">
     //   <div className="container py-4">
@@ -204,7 +214,7 @@ export default function Footer() {
                   TreinamentosGM@gmail.com.br
                 </p>
                 <p>
-                  <i className="fas fa-phone me-3" /> +55 (11) 98562-8455 
+                  <i className="fas fa-phone me-3" /> +55 (11) 98562-8455
                 </p>
                 <p>
                   <i className="fas fa-print me-3" /> +55  (11) 91845-9237
@@ -221,7 +231,7 @@ export default function Footer() {
           className="text-center p-4"
           style={{ backgroundColor: "rgba(80, 161, 253, 0.12)" }}
         >
-         © {new Date().getFullYear()} GM — Todos os direitos reservados.
+          © {new Date().getFullYear()} GM — Todos os direitos reservados.
         </div>
         {/* Copyright */}
       </footer>
