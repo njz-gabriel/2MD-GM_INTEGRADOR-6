@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
+import "./navbar.css"
 
 export default function Navbar() {
+
   return (
     // <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     //   <div className="container-fluid">
@@ -57,466 +59,54 @@ export default function Navbar() {
     //   </div>
     // </nav>
 
-
-    <>
-      {/*Main Navigation*/}
-      <header>
-        {/* Sidenav */}
-        <div
-          id="sidenav-1"
-          className="sidenav"
-          data-mdb-sidenav-init=""
-          data-mdb-color="dark"
-          role="navigation"
-          data-mdb-hidden="false"
-          data-mdb-accordion="true"
-        >
-          <a
-            className="d-flex justify-content-center py-3"
-            href="#!"
-            data-mdb-ripple-init=""
-            data-mdb-ripple-color="primary"
-          >
-            <img
-              id="MDB-logo"
-              src="https://mdbootstrap.com/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
-              alt="MDB Logo"
-              draggable="false"
-              height={25}
-            />
+    <nav className="navbar">
+      <ul className="navbar__menu">
+        <li className="navbar__item">
+          <a href="#" className="navbar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
+              <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+            </svg>
+            <span>Home</span>
           </a>
-          <ul className="sidenav-menu">
-            <li className="sidenav-item">
-              <a className="sidenav-link active">
-                <i className="fas fa-home fa-fw me-3" />
-                <span>Home</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-fire fa-fw me-3" />
-                <span>Trending</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fab fa-youtube-square fa-fw me-3" />
-                <span>Subscriptions</span>
-              </a>
-            </li>
-          </ul>
-          <hr />
-          <ul className="sidenav-menu">
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-caret-square-right fa-fw me-3" />
-                <span>Library</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-history fa-fw me-3" />
-                <span>History</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="far fa-caret-square-right fa-fw me-3" />
-                <span>Your videos</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-clock fa-fw me-3" />
-                <span>Watch later</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-thumbs-up fa-fw me-3" />
-                <span>Liked videos</span>
-              </a>
-            </li>
-          </ul>
-          <hr />
-          <ul className="sidenav-menu">
-            <h6 className="text-muted text-uppercase ps-4">Subscriptions</h6>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                  className="rounded-circle me-3"
-                  height={25}
-                  alt=""
-                  loading="lazy"
-                />
-                <span>The Jazz Hop Cafe</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img (32).jpg"
-                  className="rounded-circle me-3"
-                  height={25}
-                  alt=""
-                  loading="lazy"
-                />
-                <span>MDB Youth</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img (33).jpg"
-                  className="rounded-circle me-3"
-                  height={25}
-                  alt=""
-                  loading="lazy"
-                />
-                <span>Travels by Bus Around the World</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg"
-                  className="rounded-circle me-3"
-                  height={25}
-                  alt=""
-                  loading="lazy"
-                />
-                <span>The Awesome</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img (28).jpg"
-                  className="rounded-circle me-3"
-                  height={25}
-                  alt=""
-                  loading="lazy"
-                />
-                <span>SheriffUSA</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a
-                className="sidenav-link"
-                data-mdb-collapse-init=""
-                role="button"
-                aria-expanded="false"
-                aria-controls="collapseExample"
-              >
-                <i className="fas fa-chevron-down fa-fw me-3" />
-                <span>Show 2 more</span>
-              </a>
-            </li>
-          </ul>
-          <hr />
-          <ul className="sidenav-menu">
-            <h6 className="text-muted text-uppercase ps-4">More from youtube</h6>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fab fa-youtube fa-fw me-3" />
-                <span>YouTube Premium</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-film fa-fw me-3" />
-                <span>Movies</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-gamepad fa-fw me-3" />
-                <span>Gaming</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-broadcast-tower fa-fw me-3" />
-                <span>Live</span>
-              </a>
-            </li>
-          </ul>
-          <hr />
-          <ul className="sidenav-menu">
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-cog fa-fw me-3" />
-                <span>Settings</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-flag fa-fw me-3" />
-                <span>Report history</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-question-circle fa-fw me-3" />
-                <span>Help</span>
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-comment-alt fa-fw me-3" />
-                <span>Send feedback</span>
-              </a>
-            </li>
-          </ul>
-          <hr />
-          <div className="ps-4 mb-3">
-            <a href="" className="text-body small me-3">
-              About
-            </a>
-            <a href="" className="text-body small me-3">
-              Press
-            </a>
-            <a href="" className="text-body small me-3">
-              Copyright
-            </a>
-            <a href="" className="text-body small me-3">
-              Contact us
-            </a>
-            <a href="" className="text-body small me-3">
-              Creators
-            </a>
-            <a href="" className="text-body small me-3">
-              Advertise
-            </a>
-            <a href="" className="text-body small me-3">
-              Developers
-            </a>
-          </div>
-          <div className="ps-4 mb-4 pb-2">
-            <a href="" className="text-body small me-3">
-              Terms
-            </a>
-            <a href="" className="text-body small me-3">
-              Privacy
-            </a>
-            <a href="" className="text-body small me-3">
-              Policy &amp; Safety
-            </a>
-            <a href="" className="text-body small me-3">
-              How YouTube works
-            </a>
-            <a href="" className="text-body small me-3">
-              Test new features
-            </a>
-          </div>
-          <p className="small text-muted ps-4">© 2020 MDBootstrap</p>
-        </div>
-        {/* Sidenav */}
-        {/* Navbar */}
-        <nav
-          id="main-navbar"
-          className="navbar navbar-expand-lg navbar-light bg-white fixed-top"
-        >
-          {/* Container wrapper */}
-          <div className="container-fluid">
-            {/* Toggler */}
-            <button
-              data-mdb-toggle="sidenav"
-              data-mdb-target="#sidenav-1"
-              className="btn shadow-0 p-0 me-3 d-block d-xxl-none"
-              aria-controls="#sidenav-1"
-              aria-haspopup="true"
-            >
-              <i className="fas fa-bars fa-lg" />
-            </button>
-            {/* Search form */}
-            <form className="d-none d-md-flex justify-content-center mx-auto input-group w-auto my-auto">
-              <input
-                autoComplete="off"
-                type="search"
-                className="form-control rounded"
-                placeholder="Search"
-                style={{ minWidth: 225 }}
-              />
-              <span className="input-group-text border-0">
-                <i className="fas fa-search" />
-              </span>
-            </form>
-            {/* Right links */}
-            <ul className="navbar-nav d-flex align-items-center flex-row">
-              <li className="nav-item">
-                <a
-                  className="nav-link me-3 py-1"
-                  href="#"
-                  data-mdb-toggle="tooltip"
-                  title="Create"
-                >
-                  <i className="fas fa-video" />
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link me-3 py-1"
-                  href="#"
-                  data-mdb-toggle="tooltip"
-                  title="YouTube apps"
-                >
-                  <i className="fas fa-th" />
-                </a>
-              </li>
-              <li className="nav-item me-3">
-                <a
-                  className="nav-link py-1"
-                  href="#"
-                  data-mdb-toggle="tooltip"
-                  title="Notifications"
-                >
-                  <i className="fas fa-bell" />
-                </a>
-              </li>
-              {/* Avatar */}
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle hidden-arrow d-flex align-items-center py-1"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-mdb-dropdown-init=""
-                  aria-expanded="false"
-                >
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                    className="rounded-circle"
-                    height={30}
-                    alt=""
-                    loading="lazy"
-                  />
-                </a>
-                <ul
-                  className="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownMenuLink"
-                  style={{ minWidth: "19rem" }}
-                >
-                  <li>
-                    <div className="px-3 pt-3 d-flex">
-                      <img
-                        src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                        className="rounded-circle me-3"
-                        height={40}
-                        alt=""
-                        loading="lazy"
-                      />
-                      <div>
-                        <h6 className="mb-0">Marie Campbell</h6>
-                        <p className="mb-2">mariecampbell@example.com</p>
-                        <a className="mb-0" href="">
-                          Manage your Google Account
-                        </a>
-                      </div>
-                    </div>
-                    <hr className="mb-2" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-user-circle fa-fw me-3" />
-                      <span>Your channel</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-dollar-sign fa-fw me-3" />
-                      <span>Paid memberships</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-play-circle fa-fw me-3" />
-                      <span>YouTube Studio</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-users-cog fa-fw me-3" />
-                      <span>Switch account</span>
-                      <i className="fas fa-chevron-right float-end mt-1" />
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-sign-out-alt me-3" />
-                      <span>Sign out</span>
-                    </a>
-                  </li>
-                  <hr className="my-2" />
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-sun fa-fw me-3" />
-                      <span>Appearance: Device theme</span>
-                      <i className="fas fa-chevron-right float-end mt-1" />
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-language fa-fw me-3" />
-                      <span>Language: English</span>
-                      <i className="fas fa-chevron-right float-end mt-1" />
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-globe fa-fw me-3" />
-                      <span>Location: United Kingdom</span>
-                      <i className="fas fa-chevron-right float-end mt-1" />
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-cog fa-fw me-3" />
-                      <span>Settings</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-shield-alt fa-fw me-3" />
-                      <span>Your data in YouTube</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-question-circle fa-fw me-3" />
-                      <span>Help</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-comment-alt fa-fw me-3" />
-                      <span>Send feedback</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-keyboard fa-fw me-3" />
-                      <span>Keyboard shortcuts</span>
-                    </a>
-                  </li>
-                  <hr className="my-2" />
-                  <li>
-                    <a className="dropdown-item mb-2" href="#">
-                      <span>Restricted Mode: Off</span>
-                      <i className="fas fa-chevron-right float-end mt-1" />
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          {/* Container wrapper */}
-        </nav>
-        {/* Navbar */}
-      </header>
-      {/*Main Navigation*/}
-    </>
+        </li>
+        <li className="navbar__item">
+          <a href="#" className="navbar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-chat-left-text" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+              <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
+            </svg>
+            <span>Messages</span>
+          </a>
+        </li>
+        <li className="navbar__item">
+          <a href="#" className="navbar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-bar-chart-line" viewBox="0 0 16 16">
+              <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1zm1 12h2V2h-2zm-3 0V7H7v7zm-5 0v-3H2v3z" />
+            </svg>
+            <span>Projects</span>
+          </a>
+        </li>
+        <li className="navbar__item">
+          <a href="#" className="navbar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-question-lg" viewBox="0 0 16 16">
+              <path fillRule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14" />
+            </svg>
+            <span>Help</span>
+          </a>
+        </li>
+        <li className="navbar__item">
+          <a href="#" className="navbar__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-gear" viewBox="0 0 16 16">
+              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+            </svg>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
 
   );
 }
