@@ -1,0 +1,47 @@
+--> Usuarios
+    --> Tipos de Usuarios (MT,FT, ADM)
+
+--> ADM 
+    --> Registrar, alterar, deletar Usuarios
+    --> Registrar, alterar, deletar e validar treinamentos
+    --> Emissão de certificado
+
+--> FT
+    --> Realizar treinamentos
+        --> Associar treinamento ao MT
+    --> Validar treinamentos de seus MTs
+    --> Agendar/cancelar treinamentos
+    --> Solicitar novas contas de MT
+    --> Confirmar treinamento
+
+--> MT
+    --> Confirmação de treinamento
+        --> Justificativa em caso de cancelamento
+    --> Historico de treinamentos
+
+
+--> Treinamento
+    --> ID_TREINAMENTO (nome, categoria, descricao, área)
+    --> ID_FT
+    --> ID_PARTICIPANTES (array)
+    --> Data (dd/mm/aaaa hh:mm)
+
+
+--> PAGINAS
+    --> MT
+        --> Realizar treinamento
+        --> Historico de treinamentos
+    --> FT 
+        --> Registrar treinamento
+        --> Acompanhar treinamento
+        --> Solicitar usuario
+    --> ADM
+        --> Controlar usuario
+        --> Controlar treinamento
+        --> Emitir certificado
+
+
+
+
+OPCIONAL: Caso tenha tempo livre
+    --> Mensagens
