@@ -51,6 +51,14 @@ a {
 }
 .fundoAzul1 {
 	background-color: #005DAA;
+	color: white;
+}
+.btn-azul {
+	background-color: #005DAA !important;
+	color: white !important;
+}
+.btn-azul:hover {
+	background-color: #005DAA9d !important;
 }
 
 .imgCompleta {
