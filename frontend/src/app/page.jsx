@@ -1,66 +1,35 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import './main.css';
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+  return (<>
+
+    <div className="subtitles fontetop size-fonte">
+      <div className="border-gm-color">
+        <h1>
+          Sistema inovador para gestão de treinamento
+        </h1>
+      </div>
+      <div className="d-flex justify-content-center align-items-center">
+        <h1>
+          {`Projetado de acordo com a`}<br />{`necessidade do `}
+          <span className="operador text-white px-2">operador</span>
+        </h1>
+      </div>
+      <div className="tamanho">
+        <p>Centralize a gestão de competências e treinamentos da sua equipe.
+          Solicite novos usuários, acompanhe o progresso e acesse relatórios e dashboards para decisões mais estratégicas.</p>
+      </div>
+      <div>
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+          src="/img/fabrica3.png"
+          width={1920}
+          height={628}
+          alt="Imagem para banner 1" />
+      </div>
     </div>
+
+  </>
   );
 }
