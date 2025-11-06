@@ -47,9 +47,9 @@ export default function Login() {
         <div className="d-flex flex-column flex-md-row vh-100">
 
             {/* Div logo */}
-            <div className="col-md-6 p-3 fundoAzul1 d-flex justify-content-center align-items-center">
+            <div className="col-md-5 p-5 p-md-3 fundoAzul1 d-flex justify-content-center align-items-center">
 
-                <div className="col-6 d-flex justify-content-center align-itens-center">
+                <div className="col-4 col-md-5 d-flex justify-content-center align-itens-center">
                     <a href='/'>
                         <img className="imgCompleta" src="https://www.gm.com.br/etc/designs/gbs/components/topbar/img/GM-logo-2021.png" />
                     </a>
@@ -57,7 +57,7 @@ export default function Login() {
             </div>
 
             {/* Div para o login */}
-            <div className="col-md-6 flex-grow-1 shadow-lg border d-flex flex-column justify-content-center align-items-center">
+            <div className="col-md-7 flex-grow-1 shadow-lg border d-flex flex-column justify-content-center align-items-center">
                 {/* Formulário */}
                 <div>
                     <form className="form-signin" onSubmit={FazerLogin}>
@@ -94,6 +94,7 @@ export default function Login() {
 
                 {/* Erro */}
                 <div className='text-danger medium'>{erro}</div>
+                {erro && <div className="alert alert-danger py-2">{erro}</div>}
             </div>
         </div>
     </>
