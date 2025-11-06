@@ -53,3 +53,8 @@ a {
 	background-color: #005DAA;
 }
 
+.imgCompleta {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
