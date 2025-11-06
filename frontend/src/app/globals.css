@@ -59,19 +59,19 @@ a {
 }
 /* CRIAR CLASSES A PARTIR DAQUI!!!! */
 
-.azul1 {
-	color: #005DAA;
+.azulGM {
+	color: #0956FF;
 }
-.fundoAzul1 {
-	background-color: #005DAA;
+.fundoAzulGM {
+	background-color: #0956FF;
 	color: white;
 }
-.btn-azul {
-	background-color: #005DAA !important;
+.btn-azulGM {
+	background-color: #0956FF !important;
 	color: white !important;
 }
-.btn-azul:hover {
-	background-color: #005DAA9d !important;
+.btn-azulGM:hover {
+	background-color: #388BFF !important;
 }
 
 .imgCompleta {
