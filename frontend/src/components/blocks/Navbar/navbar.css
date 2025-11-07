@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
-body {
-  background: #eaeef6;
-  font-family: 'Open Sans', sans-serif;
-}
-
 /* Variáveis */
 :root {
   --borderRadius: 10px;
