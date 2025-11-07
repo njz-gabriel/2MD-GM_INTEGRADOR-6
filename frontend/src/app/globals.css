@@ -25,6 +25,10 @@ body {
 
 	padding: 0;
 	height: 100vh;
+
+	background: #eaeef6;
+
+	font-family: 'Open Sans', sans-serif;
 }
 
 * {
@@ -45,31 +49,35 @@ a {
 }
 
 @font-face {
-  font-family: 'productsans';
-  src: url('/fontes/Product Sans Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+	font-family: 'productsans';
+	src: url('/fontes/Product Sans Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'productsans-bold';
-  src: url('/fontes/Product Sans Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+	font-family: 'productsans-bold';
+	src: url('/fontes/Product Sans Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
 }
+
 /* CRIAR CLASSES A PARTIR DAQUI!!!! */
 
 .azulGM {
 	color: #0956FF;
 }
+
 .fundoAzulGM {
 	background-color: #0956FF;
 	color: white;
 }
+
 .btn-azulGM {
 	background-color: #0956FF !important;
 	color: white !important;
 }
+
 .btn-azulGM:hover {
 	background-color: #388BFF !important;
 }
