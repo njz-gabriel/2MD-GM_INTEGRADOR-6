@@ -25,4 +25,3 @@ export const UPLOAD_CONFIG = {
             'application/zip', 'application/x-rar-compressed'
         ]
 };
-

@@ -1,9 +1,9 @@
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import express from 'express';          // 
+import cors from 'cors';                // Complemento para impedir o cross (scripting/site/side?) da aplicação, limita o acesso à aplicação
+import helmet from 'helmet';            // Complemento de segurança, realiza tratativas de seguranças nas requisições HTTP
+import dotenv from 'dotenv';            // Variáveis de ambiente - Utilizado para as informações locais que não serão compartilhadas no GitHub
+import path from 'path';                // 
+import { fileURLToPath } from 'url';    // 
 
 // Importar rotas
 import produtoRotas from './routes/produtoRotas.js';
@@ -30,9 +30,9 @@ app.use(helmet()); // Segurança HTTP headers
 
 // Configurar CORS para permitir que rotas OPTIONS específicas sejam processadas
 app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: '*', // Permitindo acesso de qualquer endereço
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],   // Metódos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'],      // Headers permmitidos
     preflightContinue: false, // Deixa as rotas OPTIONS específicas serem processadas
     optionsSuccessStatus: 200 // Retorna 200 para OPTIONS em vez de 204
 }));

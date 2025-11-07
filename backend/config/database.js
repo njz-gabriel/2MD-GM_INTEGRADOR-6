@@ -1,3 +1,5 @@
+// Funções CRUD para o BD
+
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
@@ -22,7 +24,7 @@ async function getConnection() {
     return pool.getConnection();
 }
 
-// Função para ler registros (um ou múltiplos)
+// READ - Função para ler registros (um ou múltiplos)
 async function read(table, where = null) {
     const connection = await getConnection();
     try {
@@ -38,7 +40,7 @@ async function read(table, where = null) {
     }
 }
 
-// Função para inserir um novo registro
+// INSERT - Função para inserir um novo registro
 async function create(table, data) {
     const connection = await getConnection();
     try {
@@ -54,7 +56,7 @@ async function create(table, data) {
     }
 }
 
-// Função para atualizar um registro
+// UPDATE - Função para atualizar um registro
 async function update(table, data, where) {
     const connection = await getConnection();
     try {
@@ -72,7 +74,7 @@ async function update(table, data, where) {
     }
 }
 
-// Função para excluir um registro
+// DELETE - Função para excluir um registro
 async function deleteRecord(table, where) {
     const connection = await getConnection();
     try {
