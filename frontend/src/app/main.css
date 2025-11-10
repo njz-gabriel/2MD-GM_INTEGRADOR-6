@@ -9,10 +9,9 @@
 }
 .operador{
     border-radius: 100px;
-    background-color: rgb(0, 91, 170);
 }
 .border-gm-color{
-    border-bottom: 2px solid rgb(0, 91, 170);
+    border-bottom: 2px solid #0956FF;
 }
 .tamanho{
     width: 400px;

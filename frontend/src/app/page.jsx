@@ -14,7 +14,7 @@ export default function Home() {
       <div className="d-flex justify-content-center align-items-center">
         <h1>
           {`Projetado de acordo com a`}<br />{`necessidade do `}
-          <span className="operador text-white px-2">operador</span>
+          <span className="fundoAzulGM operador text-white px-2">operador</span>
         </h1>
       </div>
       <div className="tamanho">
@@ -23,7 +23,7 @@ export default function Home() {
       </div>
       <div>
         <Image
-          src="/img/fabrica3.png"
+          src="/img/fabrica.png"
           width={1920}
           height={628}
           alt="Imagem para banner 1" />
