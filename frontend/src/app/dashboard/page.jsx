@@ -12,7 +12,8 @@ export default function Dashboard() {
   });
 
   const [activities, setActivities] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false); // Modal de Novo Projeto
+  const [showNotificationModal, setShowNotificationModal] = useState(false); // Modal de Notificações
 
   const [newActivity, setNewActivity] = useState({
     title: "",
@@ -73,8 +74,8 @@ export default function Dashboard() {
   const handleNewProject = () => {
     setNewActivity({
       title: "",
-      icon: "fa-xmark", // padrão
-      color: "danger",  // padrão
+      icon: "fa-xmark",
+      color: "danger",
     });
     setShowModal(true);
   };
@@ -87,7 +88,7 @@ export default function Dashboard() {
     const newId = activities.length > 0 ? Math.max(...activities.map(a => a.id)) + 1 : 1;
     const activityToAdd = {
       id: newId,
-      ...newActivity, 
+      ...newActivity,
       createdAt: Date.now(),
     };
 
@@ -103,6 +104,13 @@ export default function Dashboard() {
     });
   };
 
+  // 🔹 Modal de notificações
+  const handleNotifications = () => setShowNotificationModal(true);
+  const handleCloseNotificationModal = () => setShowNotificationModal(false);
+
+  // 🔹 Contagem de notificações (apenas itens com ícone de sino)
+  const notificationCount = activities.filter(a => a.icon === "fa-bell").length;
+
   return (
     <>
       <link
@@ -116,9 +124,15 @@ export default function Dashboard() {
             <h1 className="h3 mb-0">Painel de Treinamento</h1>
             <p className="text-muted small mb-0">Bem vindo, Admin</p>
           </div>
-          <div className="d-flex gap-2">
-            <button className="btn btn-outline-primary btn-sm">
+          <div className="d-flex gap-3">
+            {/* Botão Notificações com badge */}
+            <button className="btn btn-outline-primary btn-sm position-relative" onClick={handleNotifications}>
               <i className="fas fa-bell me-1" /> Notificações
+              {notificationCount > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {notificationCount}
+                </span>
+              )}
             </button>
             <button onClick={handleNewProject} className="btn btn-primary btn-sm">
               <i className="fas fa-plus me-1" /> Novo Projeto
@@ -193,7 +207,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal Novo Projeto */}
       {showModal && (
         <div
           className="modal fade show d-block"
@@ -226,6 +240,49 @@ export default function Dashboard() {
                   <button type="submit" className="btn btn-primary">Adicionar</button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Notificações */}
+      {showNotificationModal && (
+        <div
+          className="modal fade show d-block"
+          tabIndex="-1"
+          role="dialog"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Notificações</h5>
+                <button type="button" className="btn-close" onClick={handleCloseNotificationModal}></button>
+              </div>
+              <div className="modal-body">
+                {activities.filter(a => a.icon === "fa-bell").length === 0 ? (
+                  <p className="text-muted">Nenhuma notificação encontrada</p>
+                ) : (
+                  activities
+                    .filter(a => a.icon === "fa-bell")
+                    .map(a => (
+                      <div key={a.id} className="d-flex mb-3">
+                        <div className="flex-shrink-0">
+                          <div className={`bg-${a.color} bg-opacity-10 p-2 rounded`}>
+                            <i className={`fas ${a.icon} text-${a.color}`} />
+                          </div>
+                        </div>
+                        <div className="flex-grow-1 ms-3">
+                          <h6 className="mb-1">{a.title}</h6>
+                          <p className="text-muted small mb-0">{formatTime(a.createdAt)}</p>
+                        </div>
+                      </div>
+                    ))
+                )}
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={handleCloseNotificationModal}>Fechar</button>
+              </div>
             </div>
           </div>
         </div>
