@@ -9,37 +9,10 @@ export default function Home() {
 			<a className="btn btn-azulGM" href="/login">Fazer login</a>
 		</header>
 
-<<<<<<< HEAD
-    <div className="subtitles fontetop size-fonte">
-      <div className="border-gm-color">
-        <h1>
-          Sistema inovador para gestão de treinamento
-        </h1>
-      </div>
-      <div className="d-flex justify-content-center align-items-center">
-        <h1>
-          {`Projetado de acordo com a`}<br />{`necessidade do `}
-          <span className="fundoAzulGM operador text-white px-2">operador</span>
-        </h1>
-      </div>
-      <div className="tamanho">
-        <p>Centralize a gestão de competências e treinamentos da sua equipe.
-          Solicite novos usuários, acompanhe o progresso e acesse relatórios e dashboards para decisões mais estratégicas.</p>
-      </div>
-      <div>
-        <Image
-          src="/img/fabrica.png"
-          width={1920}
-          height={628}
-          alt="Imagem para banner 1" />
-      </div>
-    </div>
-=======
 		<header className="fundoAzulGM col-12 d-flex justify-content-center justify-content-md-between px-3 py-2 bordas2px border-top-0 border-start-0 border-end-0 bordaAzulGM align-items-center">
 			<div className="fw-bold fs-5">Sistemas para gestão de treinamentos</div>
 			<a className="btn btn-White" href="/login">Fazer login</a>
 		</header>
->>>>>>> 00a9585443c0ae642b5decd118c7325d95668917
 
 		{/* HERO */}
 		<div className="container d-md-flex justify-content-between align-items-center py-4">
@@ -74,7 +47,7 @@ export default function Home() {
 		{/* Banner */}
 		<div>
 			<Image
-				src="/img/fabrica3.png"
+				src="/img/fabrica.png"
 				width={1920}
 				height={628}
 				alt="Imagem para banner 1" />

@@ -4,22 +4,11 @@
     align-items: center;
 }
 
-
-
 .operador {
     border-radius: 100px;
-<<<<<<< HEAD
-}
-.border-gm-color{
-    border-bottom: 2px solid #0956FF;
-}
-.tamanho{
-    width: 400px;
-=======
     background-color: #0956FF;
 }
 
 .border-gm-color {
     border-bottom: 2px solid #0956FF;
->>>>>>> 00a9585443c0ae642b5decd118c7325d95668917
 }
