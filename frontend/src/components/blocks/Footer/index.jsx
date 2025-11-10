@@ -7,20 +7,11 @@ import './footer.css';
 
 
 export default function Footer() {
-<<<<<<< HEAD
   // Retornando uma tag vazia em páginas que não têm Navbar
   const pathname = usePathname();
   if (["/login", "/dashboard"].includes(pathname)) {
     return <></>;
   }
-=======
-    // Retornando uma tag vazia em páginas que não têm Footer
-    const pathname = usePathname();
-    if (['/login', '/'].includes(pathname)) {
-        return <></>;
-    }
->>>>>>> 1ac6bbcffc9c880071cf5b2b69d8ef0c7585655a
-
     return <>
         {/* Footer */}
         <footer className="text-center text-lg-start bg-body-tertiary text-muted">
