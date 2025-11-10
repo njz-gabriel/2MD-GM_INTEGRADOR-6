@@ -15,6 +15,7 @@ body {
 	max-width: 100vw;
 	overflow-x: hidden;
 }
+
 /*
 #f8f9fa  bem clarinho, quase branco (usado muito em dashboards clean)
 #f1f3f5  levemente mais cinza, bem neutro
@@ -32,7 +33,9 @@ body {
 	padding: 0;
 	height: 100vh;
 
-	background-color: #f8f9fa !important;
+	/* background-color: #e5e5e5 !important; */
+	/* background-color: #EDF6FF !important; */
+	background-color: white !important;
 
 	font-family: 'Open Sans', sans-serif;
 }
@@ -76,18 +79,19 @@ a {
 }
 
 .bordas2px {
-    border: 2px solid;
+	border: 2px solid;
 }
 
 /* Fontes */
 .ProductSans {
-    font-family: 'productsans';
+	font-family: 'productsans';
 }
+
 .Overpass {
 	font-family: 'overpass';
 }
 
-/* AZUL GM */
+/* AZUL GM (#0956FF)*/
 .azulGM {
 	color: #0956FF;
 }
@@ -96,6 +100,7 @@ a {
 	background-color: #0956FF;
 	color: white;
 }
+
 .bordaAzulGM {
 	border-color: #0956FF !important;
 }
@@ -105,15 +110,24 @@ a {
 	color: white !important;
 }
 
+.btn-azulGM:hover {
+	background-color: #388BFF !important;
+}
+
+/* Cinza claro (#CECECE)*/
+.bordaCinza {
+	border-color: #CECECE !important;
+}
+
+/* Botão branco */
 .btn-White {
 	background-color: white !important;
 	color: black !important;
 }
 
-.btn-azulGM:hover {
-	background-color: #388BFF !important;
+.btn-White:hover {
+	background-color: #E6E6E6 !important;
 }
-
 
 /* Classe para que uma imagem ocupe o máximo possível de seu componente pai */
 .imgCompleta {
