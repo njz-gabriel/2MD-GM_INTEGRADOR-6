@@ -83,7 +83,9 @@ a {
 .ProductSans {
     font-family: 'productsans';
 }
-
+.Overpass {
+	font-family: 'overpass';
+}
 
 /* AZUL GM */
 .azulGM {
@@ -105,7 +107,7 @@ a {
 
 .btn-White {
 	background-color: white !important;
-	color: #0956FF !important;
+	color: black !important;
 }
 
 .btn-azulGM:hover {

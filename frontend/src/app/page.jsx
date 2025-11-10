@@ -14,8 +14,8 @@ export default function Home() {
 			<a className="btn btn-White" href="/login">Fazer login</a>
 		</header>
 
-		{/* HERO */}
-		<div className="container d-md-flex justify-content-between align-items-center py-4">
+		{/* Corpo */}
+		<div className="container d-md-flex justify-content-between align-items-center py-5">
 			<div className='col-md-6 d-flex flex-column text-center gap-3 my-4'>
 				{/* Titulo */}
 				<div className="px-3 pb-1 bordas2px border-top-0 border-start-0 border-end-0 bordaAzulGM fs-1">
@@ -44,10 +44,20 @@ export default function Home() {
 			</div>
 		</div>
 
+		<div className="container d-md-flex justify-content-between align-items-center py-5">
+			<div className='col-md-6 d-flex flex-column text-center gap-3 my-4'>
+				<img src='/img/img1.svg' className="imgCompleta"></img>
+			</div>
+
+			<div className='col-md-6 d-flex flex-column text-center gap-3 my-4'>
+				<img src='/img/img2.svg' className="imgCompleta"></img>
+			</div>
+		</div>
+
 		{/* Banner */}
 		<div>
 			<Image
-				src="/img/fabrica.png"
+				src="/img/banner1.svg"
 				width={1920}
 				height={628}
 				alt="Imagem para banner 1" />
