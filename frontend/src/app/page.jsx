@@ -5,12 +5,12 @@ export default function Home() {
 	return (<>
 		{/* Header */}
 		<header className="col-12 d-flex justify-content-center justify-content-md-between px-3 py-2 bordas2px border-top-0 border-start-0 border-end-0 bordaAzulGM align-items-center">
-			<div className="fw-bold fs-5">Sistemas para gestão de treinamentos</div>
+			<div className="fw-bold fs-5" style={{textTransform:'uppercase'}}>Sistemas para gestão de treinamentos</div>
 			<a className="btn btn-azulGM" href="/login">Fazer login</a>
 		</header>
 
 		<header className="fundoAzulGM col-12 d-flex justify-content-center justify-content-md-between px-3 py-2 bordas2px border-top-0 border-start-0 border-end-0 bordaAzulGM align-items-center">
-			<div className="fw-bold fs-5">Sistemas para gestão de treinamentos</div>
+			<div className="fw-bold fs-5" style={{textTransform:'uppercase'}}>Sistemas para gestão de treinamentos</div>
 			<a className="btn btn-White" href="/login">Fazer login</a>
 		</header>
 
@@ -49,7 +49,7 @@ export default function Home() {
 				<img src='/img/img1.svg' className="imgCompleta"></img>
 			</div>
 
-			<div className='col-md-6 d-flex flex-column text-center gap-3 my-4'>
+			<div className='col-md-5 rounded overflow-hidden d-flex flex-column text-center gap-3 my-4'>
 				<img src='/img/img2.svg' className="imgCompleta"></img>
 			</div>
 		</div>
