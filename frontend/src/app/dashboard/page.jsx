@@ -135,7 +135,7 @@ export default function Dashboard() {
               )}
             </button>
             <button onClick={handleNewProject} className="btn btn-primary btn-sm">
-              <i className="fas fa-plus me-1" /> Novo Projeto
+              <i className="fas fa-plus me-1" /> Novo Treinamento
             </button>
           </div>
         </div>
@@ -189,10 +189,10 @@ export default function Dashboard() {
               <div className="card-body">
                 <div className="d-grid gap-2">
                   <button className="btn btn-outline-primary" onClick={handleNewProject}>
-                    <i className="fas fa-plus me-2" /> Add Novo Projeto
+                    <i className="fas fa-plus me-2" /> Add Novo Treianemento
                   </button>
-                  <button className="btn btn-outline-success">
-                    <i className="fas fa-users me-2" /> Gerenciar Time
+                  <button className="LinkEquipes btn btn-outline-success">
+                    <a href="/equipes" className="LinkEquipes"><i className="fas fa-users me-2" /> Gerenciar Time</a>
                   </button>
                   <button className="btn btn-outline-info">
                     <i className="fas fa-cog me-2" /> Configurações
@@ -219,17 +219,17 @@ export default function Dashboard() {
             <div className="modal-content">
               <form onSubmit={handleCreateActivity}>
                 <div className="modal-header">
-                  <h5 className="modal-title">Adicionar Novo Projeto</h5>
+                  <h5 className="modal-title">Adicionar Novo Treinamento</h5>
                   <button type="button" className="btn-close" onClick={handleCloseModal}></button>
                 </div>
                 <div className="modal-body">
                   <div className="mb-3">
-                    <label className="form-label">Título</label>
+                    <label className="form-label">Treinamento</label>
                     <input
                       type="text"
                       className="form-control"
                       value={newActivity.title}
-                      placeholder="Digite o título do projeto"
+                      placeholder="Digite o nome do treinamento"
                       onChange={(e) => setNewActivity({ ...newActivity, title: e.target.value })}
                       required
                     />
