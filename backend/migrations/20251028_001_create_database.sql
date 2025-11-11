@@ -7,3 +7,4 @@ CREATE DATABASE IF NOT EXISTS produtos_api;
 -- Usar o banco de dados criado
 USE produtos_api;
 
+Drop database produtos_api;

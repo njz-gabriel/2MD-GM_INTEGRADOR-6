@@ -41,7 +41,6 @@ CREATE TABLE if not exists participacoes (
     FOREIGN KEY (idParticipante) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE if not exists certificados (
 	idUsuario		INT ,
     idTreinamento	INT,
