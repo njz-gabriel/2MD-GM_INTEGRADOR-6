@@ -28,7 +28,7 @@ export default function Login() {
 
         console.log(usuario);
 
-        fetch('http://localhost:1/login',
+        fetch('http://localhost:3000/api/auth/login',
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -41,7 +41,6 @@ export default function Login() {
         }).catch(err => {
             setErro('Erro ao solicitar login, tente novamente mais tarde.')
         })
-
     }
 
     return <>
