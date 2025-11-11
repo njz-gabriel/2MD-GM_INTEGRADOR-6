@@ -2,10 +2,10 @@
 
 /*
     Página para que um usuário realize login
-        • Coletar E-mail
-        • Coletar Senha
-        • Fazer requisição para verificar E-mail e senha
-        • Exibir caso haja erro na requisição
+        • Coletar E-mail (OK)
+        • Coletar Senha (OK)
+        • Fazer requisição para verificar E-mail e senha (OK)
+        • Exibir caso haja erro na requisição (OK)
         • Redirecionar o usuário
 */
 
@@ -28,7 +28,7 @@ export default function Login() {
 
         console.log(usuario);
 
-        fetch('http://localhost:1/login',
+        fetch('http://localhost:3000/api/auth/login',
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -38,10 +38,16 @@ export default function Login() {
             return res.json()
         }).then(data => {
             console.log(data);
+
+            if (data.sucesso) {
+                // REDIRECIONAR O USUÁRIO APÓS O LOGIN
+            }
+            else {
+                setErro(data.mensagem)
+            }
         }).catch(err => {
             setErro('Erro ao solicitar login, tente novamente mais tarde.')
         })
-
     }
 
     return <>
@@ -95,7 +101,6 @@ export default function Login() {
 
                 {/* Erro */}
                 <div className='text-danger medium'>{erro}</div>
-                {erro && <div className="alert alert-danger py-2">{erro}</div>}
             </div>
         </div>
     </>
