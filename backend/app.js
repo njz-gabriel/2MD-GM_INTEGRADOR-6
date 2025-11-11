@@ -11,6 +11,9 @@ import authRotas from './routes/authRotas.js';
 import criptografiaRotas from './routes/criptografiaRotas.js';
 import usuarioRotas from './routes/usuarioRotas.js';
 
+// NÓS CRIAMOS
+import treinamentosRotas from './routes/treinamentosRotas.js';
+
 // Importar middlewares
 import { logMiddleware } from './middlewares/logMiddleware.js';
 import { errorMiddleware } from './middlewares/errorMiddleware.js';
@@ -51,6 +54,9 @@ app.use('/api/auth', authRotas);
 app.use('/api/produtos', produtoRotas);
 app.use('/api/criptografia', criptografiaRotas);
 app.use('/api/usuarios', usuarioRotas);
+
+// NÓS CRIAMOS
+app.use('/api/treinamentos', treinamentosRotas);
 
 // Rota raiz
 app.get('/', (req, res) => {

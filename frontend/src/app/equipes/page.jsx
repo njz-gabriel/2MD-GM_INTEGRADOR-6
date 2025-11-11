@@ -3,7 +3,7 @@ import "./equipes.css"
 export default function Equipes() {
 
     return (<>
-        <div className="container d-flex justify-content-center align-items-center min-vh-100 gap-5">
+        <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
 
             <div className="card profile-card">
                 <div className="card-body text-center shadow-sm">

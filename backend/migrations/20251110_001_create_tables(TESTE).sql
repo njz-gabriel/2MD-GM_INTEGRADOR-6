@@ -12,17 +12,6 @@ CREATE TABLE if not exists usuarios (
     data_atualizacao	DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE if not exists treinamentos (
-	id					INT PRIMARY KEY AUTO_INCREMENT,
-    nome				VARCHAR(255) NOT NULL,
-    descricao			VARCHAR(255) UNIQUE NOT NULL,
-    data_criacao		DATETIME DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao	DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    numSessoes			INT,
-    idCriador			INT,
-    
-    FOREIGN KEY (idCriador) REFERENCES usuarios(id) ON DELETE SET NULL
-);
 
 CREATE TABLE if not exists sessoes (
 	id					INT PRIMARY KEY AUTO_INCREMENT,

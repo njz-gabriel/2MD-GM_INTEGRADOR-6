@@ -18,3 +18,4 @@ INSERT INTO produtos (nome, descricao, preco, categoria, imagem) VALUES
 ('Camiseta Polo', 'Camiseta polo masculina azul', 89.90, 'Roupas', 'camiseta.jpg'),
 ('Livro JavaScript', 'Livro sobre programação JavaScript', 79.90, 'Livros', 'livro.jpg');
 
+select * from usuarios;
