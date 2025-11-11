@@ -16,13 +16,6 @@ body {
 	overflow-x: hidden;
 }
 
-/*
-#f8f9fa  bem clarinho, quase branco (usado muito em dashboards clean)
-#f1f3f5  levemente mais cinza, bem neutro
-#e9ecef  um cinza mais perceptível, ainda suave
-#dee2e6  começa a dar contraste, ótimo pra seções
-#ced4da  bom para containers com leve destaque
-*/
 body {
 	color: var(--foreground);
 	background: var(--background);
@@ -37,6 +30,7 @@ body {
 	/* background-color: #EDF6FF !important; */
 	background-color: white !important;
 	background-color: #F5F5F5 !important;
+	background-color: red !important;
 
 	font-family: 'Open Sans', sans-serif;
 }

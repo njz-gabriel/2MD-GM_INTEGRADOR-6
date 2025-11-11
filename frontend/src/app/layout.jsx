@@ -1,12 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 // BOOTSTRAP
 import "bootstrap/dist/css/bootstrap.min.css"
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // COMPONENTES
 import Navbar from "@/components/blocks/Navbar";
-import Footer from "@/components/blocks/Footer";
 
 // Fonte padrão da GM
 import { Overpass } from "next/font/google";
@@ -27,11 +26,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`verpass.className d-flex p-3 gap-3`}>
+      <body className={`${overpass.className} d-flex flex-column flex-lg-row gap-3`}>
 
+        {/* Barra de navegação */}
         <Navbar/>
 
-        <div className="flex-grow-1 bg-danger">
+        {/* Corpo da página */}
+        <div className="flex-grow-1">
           {children}
         </div>
 
