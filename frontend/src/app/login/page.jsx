@@ -1,10 +1,11 @@
 'use client'
 
 /*
-    Página para que qualquer usuário realize login
+    Página para que um usuário realize login
         • Coletar E-mail
         • Coletar Senha
         • Fazer requisição para verificar E-mail e senha
+        • Exibir caso haja erro na requisição
         • Redirecionar o usuário
 */
 
@@ -69,18 +70,18 @@ export default function Login() {
 
                         {/* Input - Email */}
                         <div className="form-floating">
-                            <input type="email" className="form-control" id="floatingInput" placeholder='E-mail' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
+                            <input type="email" className="form-control bordaCinza" id="floatingInput" placeholder='E-mail' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
                             <label htmlFor="floatingInput">E-mail</label>
                         </div>
                         {/* Input - Senha */}
                         <div className="form-floating">
-                            <input type="password" className="form-control" id="floatingPassword" placeholder='Senha' value={senha} onChange={(e) => { setSenha(e.target.value) }} required />
+                            <input type="password" className="form-control bordaCinza" id="floatingPassword" placeholder='Senha' value={senha} onChange={(e) => { setSenha(e.target.value) }} required />
                             <label htmlFor="floatingPassword">Senha</label>
                         </div>
 
                         {/* Lembre de mim */}
                         <div className="form-check text-start my-3">
-                            <input className="form-check-input" type="checkbox" defaultValue="remember-me" id="checkDefault" />
+                            <input className="form-check-input bordaCinza" type="checkbox" defaultValue="remember-me" id="checkDefault" />
                             <label className="form-check-label" htmlFor="checkDefault">Lembre de mim</label>
                         </div>
 

@@ -2,9 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
-
 import './navbar.css'
-
 
 export default function Navbar() {
 	// Retornando uma tag vazia em páginas que não têm Navbar
@@ -16,6 +14,7 @@ export default function Navbar() {
 	return (
 		<nav className="navbar">
 			<ul className="navbar__menu">
+				{/* Home */}
 				<li className="navbar__item">
 					<a href="#" className="navbar__link">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
@@ -24,6 +23,8 @@ export default function Navbar() {
 						<span>Home</span>
 					</a>
 				</li>
+
+				{/* Mensagens */}
 				<li className="navbar__item">
 					<a href="#" className="navbar__link">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-chat-left-text" viewBox="0 0 16 16">
@@ -33,6 +34,8 @@ export default function Navbar() {
 						<span>Messages</span>
 					</a>
 				</li>
+
+				{/* Projetos */}
 				<li className="navbar__item">
 					<a href="#" className="navbar__link">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-bar-chart-line" viewBox="0 0 16 16">
@@ -41,6 +44,8 @@ export default function Navbar() {
 						<span>Projects</span>
 					</a>
 				</li>
+
+				{/* Ajuda */}
 				<li className="navbar__item">
 					<a href="#" className="navbar__link">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-question-lg" viewBox="0 0 16 16">
@@ -49,6 +54,8 @@ export default function Navbar() {
 						<span>Help</span>
 					</a>
 				</li>
+
+				{/* Configurações */}
 				<li className="navbar__item">
 					<a href="#" className="navbar__link">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-gear" viewBox="0 0 16 16">
