@@ -2,7 +2,7 @@ import "./equipes.css"
 
 export default function Equipes() {
 
-    return (<>
+    return <>
         <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
 
             <div className="card profile-card">
@@ -34,5 +34,5 @@ export default function Equipes() {
             </div>
 
         </div>
-    </>)
+    </>
 }
