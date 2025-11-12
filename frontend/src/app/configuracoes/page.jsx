@@ -17,7 +17,7 @@ export default function Configuracoes() {
                     <div className="col-12 mb-4">
                         <div className="profile-header position-relative mb-4">
                             <div className="position-absolute top-0 end-0 p-3">
-                                <LogoGM tamanho={80} cor={"#0956FF"}/>
+                                <LogoGM tamanho={80} cor={"#0956FF"} />
 
                             </div>
                         </div>
@@ -35,13 +35,15 @@ export default function Configuracoes() {
                             <h3 className="mt-3 mb-1">#Nome</h3>
                             <p className="text-muted mb-3">#Cargo</p>
                             <div className="d-flex justify-content-center gap-2 mb-4">
-                                <button className="btn btn-outline-primary">
+                                <button
+                                    className="btn btn-outline-primary"
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    data-bs-whatever="@getbootstrap"
+                                >
                                     <i className="fas fa-envelope me-2" />
                                     Mensagem
-                                </button>
-                                <button className="btn btn-primary">
-                                    <i className="fas fa-user-plus me-2" />
-                                    Conectar
                                 </button>
                             </div>
                         </div>
@@ -170,6 +172,57 @@ export default function Configuracoes() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {/* Modal Mensagem */}
+        <div
+            className="modal fade"
+            id="exampleModal"
+            tabIndex={-1}
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">
+                            Nova mensagem
+                        </h5>
+                        <button
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        />
+                    </div>
+                    <div className="modal-body">
+                        <form>
+                            <div className="mb-3">
+                                <label htmlFor="recipient-nome" className="col-form-label">
+                                    Nome:
+                                </label>
+                                <input type="text" className="form-control" id="recipient-nome" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="mensagem-text" className="col-form-label">
+                                    Mensagem:
+                                </label>
+                                <textarea
+                                    className="form-control"
+                                    id="mensagem-text"
+                                    defaultValue={""}
+                                />
+                            </div>
+                        </form>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-primary">
+                            Enviar
+                        </button>
                     </div>
                 </div>
             </div>
