@@ -11,7 +11,6 @@ import { useState, useEffect } from "react";
 
 export default function Equipes() {
 
-<<<<<<< HEAD
     const [equipes, setEquipes] = useState([]);
 
     useEffect(() => {
@@ -54,12 +53,7 @@ export default function Equipes() {
 
 
 
-        {/* <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
-=======
-    return <>
-        <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
->>>>>>> 01298aa5d4e523acf554827b7027f8e3b646b3da
-
+    {/* <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
             <div className="card profile-card">
                 <div className="card-body text-center shadow-sm">
 
@@ -86,13 +80,6 @@ export default function Equipes() {
                     <h3 className="card-title mb-2">Pintura</h3>
                     <p className="card-text text-muted mb-3">Times de todas as plantas do Brasil</p>
                 </div>
-            </div>
-
-<<<<<<< HEAD
         </div> */}
     </>)
-=======
-        </div>
-    </>
->>>>>>> 01298aa5d4e523acf554827b7027f8e3b646b3da
 }
