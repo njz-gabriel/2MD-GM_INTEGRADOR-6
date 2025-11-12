@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 
 import './navbar.css'
+import LogoGM from '@/components/LogoGM';
 
 export default function Navbar() {
 	// Retornando uma tag vazia em páginas que não têm Navbar
@@ -66,6 +67,9 @@ export default function Navbar() {
 					</a>
 				</li>
 			</ul>
+
+			{/* Logo da GM */}
+			<LogoGM tamanho={55} cor={'black'} />
 		</nav>
 	);
 }

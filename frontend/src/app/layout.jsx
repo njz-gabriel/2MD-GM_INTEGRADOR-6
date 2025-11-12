@@ -27,9 +27,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${overpass.className} d-flex flex-column flex-lg-row gap-3`}>
+        {/* CSS do fa icons */}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
         {/* Barra de navegação */}
-        <Navbar/>
+        <Navbar />
 
         {/* Corpo da página */}
         <div className="flex-grow-1">

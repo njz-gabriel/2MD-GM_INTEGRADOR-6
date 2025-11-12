@@ -120,27 +120,22 @@ export default function Dashboard() {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(dadosTreinamento)
+		}).then(res => {
+			res.json()
+		}).then(data => {
+			if (data.sucesso) {
+
+			}
+			else {
+				console.log(data.mensagem);
+			}
 		})
-			.then(res => res.json())
-			.then(data => {
-
-				if (data.sucesso) {
-
-				}
-				else {
-					console.log(data.mensagem);
-				}
-			})
 	};
 
 
 
 	return (
 		<>
-			<link
-				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-				rel="stylesheet"
-			/>
 			<div className="container py-4">
 				{/* Header Section */}
 				<div className="d-flex justify-content-between align-items-center mb-4">
