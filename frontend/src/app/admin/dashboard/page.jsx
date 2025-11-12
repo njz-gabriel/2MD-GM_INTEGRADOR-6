@@ -3,9 +3,23 @@
 import { useState, useEffect } from "react";
 
 import "./dashboard.css";
+import TreinamentosLista from "@/components/TreinamentosLista";
 
 export default function Dashboard() {
-	const [treinamentos, setTreinamentos] = useState([]);
+	const [treinamentos, setTreinamentos] = useState([
+		{id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado:"Pendente", data_criacao: Date.now()},
+		{id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado:"Concluido", data_criacao: Date.now()},
+		{id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado:"Em andamento", data_criacao: Date.now()},
+		{id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado:"Cancelado", data_criacao: Date.now()},
+		{id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado:"Pendente", data_criacao: Date.now()},
+		{id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado:"Concluido", data_criacao: Date.now()},
+		{id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado:"Em andamento", data_criacao: Date.now()},
+		{id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado:"Cancelado", data_criacao: Date.now()},
+		{id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado:"Pendente", data_criacao: Date.now()},
+		{id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado:"Concluido", data_criacao: Date.now()},
+		{id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado:"Em andamento", data_criacao: Date.now()},
+		{id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado:"Cancelado", data_criacao: Date.now()}
+	]);
 	const [usuario, setUsuario] = useState([]);
 
 	// Carregando os treinamentos
@@ -33,13 +47,7 @@ export default function Dashboard() {
 	}, [])
 
 
-	// Objeto para controlar o status do treinamento
-	const Status = {
-		"Pendente": ["warning", "fa-question-circle"],
-		"Em andamento": ["warning", "fa-cogs"],
-		"Concluido": ["success", "fa-check"],
-		"Cancelado": ["danger", "fa-xmark"],
-	}
+
 
 	// ===========================================================
 	const [activities, setActivities] = useState([]);
@@ -150,7 +158,7 @@ export default function Dashboard() {
 				{/* Titulo da página*/}
 				<div className="d-flex flex-column justify-content-between mb-3">
 
-					<div className="bottom-bordaAzulGM pe-2 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Treinamento</h1></div>
+					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Treinamento</h1></div>
 					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario.nome}</p>
 
 
@@ -171,37 +179,7 @@ export default function Dashboard() {
 				<div className="row g-3">
 
 					{/* Listagem de treinamentos */}
-					<div className="col-12 col-lg-8">
-						<div className="card border-0 shadow-sm">
-							<div className="card-header bg-white border-0">
-								<div className="d-flex justify-content-between align-items-center">
-									<h5 className="mb-0">Treinamentos recentes</h5>
-								</div>
-							</div>
-							<div className="card-body">
-								<div className="timeline">
-									{treinamentos.length > 0 ? (
-										treinamentos.map((tr) => (
-											<div key={tr.id} className="d-flex mb-3">
-												<div className="flex-shrink-0">
-													<div className={`bg-${Status[tr.estado][0]} bg-opacity-10 p-2 rounded`}>
-														<i className={`fas ${Status[tr.estado][1]} text-${Status[tr.estado][0]}`} />
-													</div>
-												</div>
-
-												<div className="flex-grow-1 ms-3">
-													<h6 className="mb-1">{tr.nome}</h6>
-													<p className="text-muted small mb-0">{formatTime(tr.data_criacao)}</p>
-												</div>
-											</div>
-										))
-									) : (
-										<p className="text-muted">Carregando atividades...</p>
-									)}
-								</div>
-							</div>
-						</div>
-					</div>
+					<TreinamentosLista treinamentos={treinamentos} />
 
 					{/* Ações Rápidas */}
 					<div className="col-12 col-lg-4">
