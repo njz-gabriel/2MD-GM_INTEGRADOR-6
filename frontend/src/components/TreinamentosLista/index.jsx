@@ -1,22 +1,45 @@
+'use client'
+
+import { useState } from "react";
+
+import TreinamentosItem from "./TreinamentoItem";
+
+import './trLista.css'
+
 export default function TreinamentosLista({ treinamentos }) {
-    // Objeto para controlar os status dos treinamentos
+    const [filtro, setFiltro] = useState()
+    const [trExibir, setTrExibir] = useState(treinamentos)
+    const [filtroAtivo, setFiltroAtivo] = useState()
+
     const Status = {
-        "Pendente": ["warning", "fa-question-circle"],
+        "Pendente": ["primary", "fa-question-circle"],
         "Em andamento": ["warning", "fa-cogs"],
         "Concluido": ["success", "fa-check"],
         "Cancelado": ["danger", "fa-xmark"],
-    }
+    };
 
-    const formatTime = (createdAt) => {
-        const diff = Date.now() - new Date(createdAt).getTime();
-        const seconds = Math.floor(diff / 1000);
-        const minutes = Math.floor(seconds / 60);
-        if (minutes === 0) return "Agora";
-        if (minutes < 60) return `Há ${minutes} minuto${minutes > 1 ? "s" : ""}`;
-        const hours = Math.floor(minutes / 60);
-        if (hours < 24) return `Há ${hours} hora${hours > 1 ? "s" : ""}`;
-        const days = Math.floor(hours / 24);
-        return `Há ${days} dia${days > 1 ? "s" : ""}`;
+    /* Função para filtrar os treinamentos pelo estado */
+    function filtrar(estado) {
+        const filtroSelecionado = document.getElementById(`${estado.replace(' ', '')}Div`);
+
+        // Se selecionar a opção que já está sendo filtrada, desativa o filtro
+        if (filtro === estado) {
+            setFiltro('');
+            setTrExibir(treinamentos);
+
+            filtroSelecionado.classList.remove(`border-${Status[estado][0]}`, `bg-${Status[estado][0]}`,'bg-opacity-10')
+            return
+        }
+
+        // Filtrando os treinamentos
+        const filtrados = treinamentos.filter((tr) => { return tr.estado === estado })
+
+        // Atualizando as informações do filtro
+        setFiltro(estado);
+        setTrExibir(filtrados);
+
+        // Estilizando a div "botão" da filtragem
+        filtroSelecionado.classList.add(`border-${Status[estado][0]}`, `bg-${Status[estado][0]}`,'bg-opacity-10')
     };
 
     return <div className="col-12 col-lg-8">
@@ -28,22 +51,18 @@ export default function TreinamentosLista({ treinamentos }) {
                 </div>
             </div>
 
+            {/* Botoes de filtro */}
+            <div className="d-flex col-12">
+                <div className="btn rounded-0 col-3 btnPendente" id="PendenteDiv" onClick={() => filtrar("Pendente")}>Pendentes</div>
+                <div className="btn rounded-0 col-3" id="EmandamentoDiv" onClick={() => filtrar("Em andamento")}>Em andamento</div>
+                <div className="btn rounded-0 col-3" id="ConcluidoDiv" onClick={() => filtrar("Concluido")}>Concluídos</div>
+                <div className="btn rounded-0 col-3" id="CanceladoDiv" onClick={() => filtrar("Cancelado")}>Cancelados</div>
+            </div>
+
             {/* Lista */}
-            <div className="card-body border rounded overflow-y-scroll" style={{height:'500px'}}>
+            <div className="card-body border rounded overflow-y-scroll" style={{ height: '500px' }}>
                 {treinamentos.length > 0 ? (
-                    treinamentos.map((tr) => (
-                        <div key={tr.id} className="d-flex align-items-center border-bottom mb-2 pb-2">
-
-                            <div className={`flex-shrink-0 bg-${Status[tr.estado][0]} bg-opacity-10 rounded d-flex justify-content-center align-items-center`} style={{ width: '2.5rem', height: '2.5rem' }}>
-                                <i className={`fas ${Status[tr.estado][1]} text-${Status[tr.estado][0]}`} />
-                            </div>
-
-                            <div className="flex-grow-1 ms-3">
-                                <h6 className="mb-1">{tr.nome}</h6>
-                                <p className="text-muted small mb-0">{formatTime(tr.data_criacao)}</p>
-                            </div>
-                        </div>
-                    ))
+                    trExibir.map((tr) => (<TreinamentosItem tr={tr} key={tr.id} />))
                 ) : (
                     <p className="text-muted">Carregando atividades...</p>
                 )}
