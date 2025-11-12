@@ -26,8 +26,6 @@ body {
 	padding: 0;
 	height: 100vh;
 
-	/* background-color: #e5e5e5 !important; */
-	/* background-color: #EDF6FF !important; */
 	background-color: white !important;
 	background-color: #F5F5F5 !important;
 	/* background-color: red !important; */
@@ -101,7 +99,7 @@ a {
 }
 
 .bottom-bordaAzulGM {
-	border-bottom-color: #0956FF !important;
+	border-bottom: 2px solid #0956FF !important;
 }
 
 .btn-azulGM {
