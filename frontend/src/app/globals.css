@@ -99,7 +99,7 @@ a {
 }
 
 .bottom-bordaAzulGM {
-	border-bottom-color: #0956FF !important;
+	border-bottom: 2px solid #0956FF !important;
 }
 
 .btn-azulGM {

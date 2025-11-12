@@ -6,26 +6,34 @@ import "./dashboard.css";
 
 export default function Dashboard() {
 	const [treinamentos, setTreinamentos] = useState([]);
+	const [usuario, setUsuario] = useState([]);
 
+	// Carregando os treinamentos
 	useEffect(() => {
-		async function carregarTreinamentos() {
-			const res = await fetch('http://localhost:3000/api/treinamentos');
-			const data = await res.json();
+		try {
+			async function carregarTreinamentos() {
+				const res = await fetch('http://localhost:3000/api/treinamentos');
+				const data = await res.json();
 
-			if (data.sucesso) {
-				console.log(data.dados);
+				if (data.sucesso) {
+					console.log(data.dados);
 
-				setTreinamentos(data.dados);
+					setTreinamentos(data.dados);
+				}
+				else {
+					console.log(data.mensagem);
+				}
 			}
-			else {
-				console.log(data.mensagem);
-			}
+
+			carregarTreinamentos()
 		}
-
-		carregarTreinamentos()
+		catch {
+			/* Erro caso a API esteja desligada */
+		}
 	}, [])
 
 
+	// Objeto para controlar o status do treinamento
 	const Status = {
 		"Pendente": ["warning", "fa-question-circle"],
 		"Em andamento": ["warning", "fa-cogs"],
@@ -33,7 +41,7 @@ export default function Dashboard() {
 		"Cancelado": ["danger", "fa-xmark"],
 	}
 
-
+	// ===========================================================
 	const [activities, setActivities] = useState([]);
 	const [showModal, setShowModal] = useState(false); // Modal de Novo Projeto
 	const [showNotificationModal, setShowNotificationModal] = useState(false); // Modal de Notificações
@@ -107,15 +115,17 @@ export default function Dashboard() {
 
 	// 🔹 Contagem de notificações (apenas itens com ícone de sino)
 	const notificationCount = activities.filter(a => a.icon === "fa-bell").length;
-
+	// ===========================================================
 
 	/* Função para cadastrar um novo treinamento */
 	const criarTreinamento = () => {
+		// Criando o objeto do treinamento
 		const dadosTreinamento = {
 			nome: "sadasd",
 			descricao: "dsad"
 		}
 
+		// Fazendo a requisição para criar o treinamento
 		fetch('http://localhost:3000/api/treinamentos', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -137,14 +147,15 @@ export default function Dashboard() {
 	return (
 		<>
 			<div className="container py-4">
-				{/* Header Section */}
-				<div className="d-flex justify-content-between align-items-center mb-4">
-					<div>
-						<h1 className="h3 mb-0">Painel de Treinamento</h1>
-						<p className="text-muted small mb-0">Bem vindo, Admin</p>
-					</div>
-					<div className="d-flex gap-3">
-						{/* Botão Notificações com badge */}
+				{/* Titulo da página*/}
+				<div className="d-flex flex-column justify-content-between mb-3">
+
+					<div className="bottom-bordaAzulGM pe-2 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Treinamento</h1></div>
+					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario.nome}</p>
+
+
+					{/* Botão Notificações */}
+					{/* 
 						<button className="btn btn-outline-primary btn-sm position-relative" onClick={handleNotifications}>
 							<i className="fas fa-bell me-1" /> Notificações
 							{notificationCount > 0 && (
@@ -152,34 +163,24 @@ export default function Dashboard() {
 									{notificationCount}
 								</span>
 							)}
-						</button>
-						<button onClick={criarTreinamento} className="btn btn-primary btn-sm">
-							<i className="fas fa-plus me-1" /> Novo Projeto
-						</button>
-					</div>
+						</button> 
+					*/}
 				</div>
 
-				{/* Stats Cards Row */}
-				<div className="row g-3 mb-4">
-					{/* Adicione seus cards de estatísticas aqui */}
-				</div>
-
-				{/* Main Content Area */}
+				{/* Lista e ações */}
 				<div className="row g-3">
-					{/* Activity Timeline */}
+
+					{/* Listagem de treinamentos */}
 					<div className="col-12 col-lg-8">
 						<div className="card border-0 shadow-sm">
 							<div className="card-header bg-white border-0">
 								<div className="d-flex justify-content-between align-items-center">
-									<h5 className="mb-0">Atividades Recentes</h5>
-									<button className="btn btn-link text-decoration-none p-0">Todos</button>
+									<h5 className="mb-0">Treinamentos recentes</h5>
 								</div>
 							</div>
 							<div className="card-body">
 								<div className="timeline">
-									{treinamentos.length === 0 ? (
-										<p className="text-muted">Carregando atividades...</p>
-									) : (
+									{treinamentos.length > 0 ? (
 										treinamentos.map((tr) => (
 											<div key={tr.id} className="d-flex mb-3">
 												<div className="flex-shrink-0">
@@ -194,6 +195,8 @@ export default function Dashboard() {
 												</div>
 											</div>
 										))
+									) : (
+										<p className="text-muted">Carregando atividades...</p>
 									)}
 								</div>
 							</div>
