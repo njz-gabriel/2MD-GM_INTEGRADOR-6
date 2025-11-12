@@ -3,17 +3,18 @@
 import { usePathname } from 'next/navigation';
 
 import './navbar.css'
+import LogoGM from '@/components/LogoGM';
 
 export default function Navbar() {
 	// Retornando uma tag vazia em páginas que não têm Navbar
 	const pathname = usePathname();
-	if (['/', '/login'].includes(pathname)) {
+	if (['/', '/login', '/configuracoes'].includes(pathname)) {
 		return <></>;
 	}
 
 	return (
-		<nav className="navbar">
-			<ul className="navbar__menu">
+		<nav className="navbar m-lg-3">
+			<ul className="navbar__menu flex-grow-1">
 				{/* Home */}
 				<li className="navbar__item">
 					<a href="#" className="navbar__link">
@@ -66,6 +67,9 @@ export default function Navbar() {
 					</a>
 				</li>
 			</ul>
+
+			{/* Logo da GM */}
+			<LogoGM tamanho={55} cor={'black'} />
 		</nav>
 	);
 }

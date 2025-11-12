@@ -1,3 +1,10 @@
+
+
+/*
+    Página que comtém o nome e intregrantes dos times da GM;
+    Separados por time;
+*/
+
 import Card from "@/components/CardTimes/Card"
 import './timesid.css'
 
