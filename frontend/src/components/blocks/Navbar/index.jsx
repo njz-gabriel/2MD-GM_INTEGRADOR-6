@@ -13,8 +13,8 @@ export default function Navbar() {
 	}
 
 	return (
-		<nav className="navbar">
-			<ul className="navbar__menu">
+		<nav className="navbar m-lg-3">
+			<ul className="navbar__menu flex-grow-1">
 				{/* Home */}
 				<li className="navbar__item">
 					<a href="#" className="navbar__link">
