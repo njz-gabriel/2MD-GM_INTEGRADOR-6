@@ -1,10 +1,59 @@
+"use client";
+
+/*
+    Página que comtém o nome das equipes da GM;
+    Separados por setor;
+    Usuários ao selecionar equipe serão redirecionados a página de times respectiva à equipe selecionada;
+*/
+
 import "./equipes.css"
+import { useState, useEffect } from "react";
 
 export default function Equipes() {
 
-    return <>
-        <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
+    const [equipes, setEquipes] = useState([]);
 
+    useEffect(() => {
+        async function carregarEquipes() {
+            const res = await fetch('http://localhost:3000/api/equipes');
+            const data = await res.json()
+
+            if (data.sucesso) {
+                console.log(data.dados);
+
+                setEquipes(data.dados);
+
+            } else {
+                console.log(data.mensagem)
+            }
+        }
+
+        carregarEquipes()
+    }, []);
+
+    return (<>
+
+        {equipes.length === 0 ? (
+            <p className="text-muted mt-2">Carregando equipes...</p>
+        ) : (
+            equipes.map((eq) => (
+                <div key={eq.id} className="container d-flex justify-content-center align-items-center h-100 gap-5">
+                    <div className="card profile-card">
+                        <div className="card-body text-center shadow-sm">
+
+                            <div className={`iconeFerramentaria shadow-sm ${eq.icone[0]}`}></div>
+
+                            <h3 className={`card-title mb-2 ${eq.estado[0]}`}></h3>
+                            <p className={`card-text text-muted mb-3 ${eq.descricao[0]}`}></p>
+                        </div>
+                    </div>
+                </div>
+            ))
+        )}
+
+
+
+    {/* <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
             <div className="card profile-card">
                 <div className="card-body text-center shadow-sm">
 
@@ -31,8 +80,6 @@ export default function Equipes() {
                     <h3 className="card-title mb-2">Pintura</h3>
                     <p className="card-text text-muted mb-3">Times de todas as plantas do Brasil</p>
                 </div>
-            </div>
-
-        </div>
-    </>
+        </div> */}
+    </>)
 }

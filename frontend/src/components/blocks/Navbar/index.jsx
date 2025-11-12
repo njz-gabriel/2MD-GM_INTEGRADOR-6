@@ -8,7 +8,7 @@ import LogoGM from '@/components/LogoGM';
 export default function Navbar() {
 	// Retornando uma tag vazia em páginas que não têm Navbar
 	const pathname = usePathname();
-	if (['/', '/login'].includes(pathname)) {
+	if (['/', '/login', '/configuracoes'].includes(pathname)) {
 		return <></>;
 	}
 
