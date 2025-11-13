@@ -47,16 +47,23 @@
 .navbar__link span {
     position: absolute;
     left: 100%;
-    transform: translate(calc(-1 * var(--spacer) * 3));
-    margin-left: 1rem;
+
     opacity: 0;
-    pointer-events: none;
-    color: var(--primary);
-    background: #fff;
+
+    color: #fff;
+    background: var(--primary);
+
+    margin-left: 1rem;
     padding: calc(var(--spacer) * 0.75);
+
+    /* O Span só torna clicável quando está com visibility = visible */
+    visibility: hidden;
+    pointer-events: visible;
+    /* Quebra em ' ' */
+    white-space: wrap; 
+
     transition: var(--transition);
-    border-radius: calc(var(--borderRadius) * 1.75);
-    white-space: nowrap;
+    transform: translate(calc(-1 * var(--spacer) * 3));
 }
 
 .navbar__link:hover {
@@ -66,6 +73,7 @@
 
 .navbar__link:hover span,
 .navbar:not(:hover) .navbar__link:focus span {
+    visibility: visible;
     opacity: 1;
     transform: translate(0);
 }
