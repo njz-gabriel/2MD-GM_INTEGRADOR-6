@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
         <Navbar />
 
         {/* Corpo da página */}
-        <div className="flex-grow-1">
+        <div className="flex-grow-1 overflow-y-scroll">
           {children}
         </div>
 
