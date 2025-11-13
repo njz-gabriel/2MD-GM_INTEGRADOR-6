@@ -13,31 +13,37 @@ export default function TreinamentosItem({ tr }) {
     };
 
     useEffect(() => {
-        const atualizarTempo = () => tempoDecorrido(tr.dataCriacao);
+        const atualizarTempo = () => tempoDecorrido(tr.data_criacao);
         atualizarTempo(); // chama ao montar
 
         const interval = setInterval(atualizarTempo, 60000); // atualiza a cada minuto
 
         return () => clearInterval(interval);
-    }, [tr.dataCriacao]);
+    }, [tr.data_criacao]);
 
     // Função para calcular o tempo decorrido desde a data de criação do treinamento
-    function tempoDecorrido(dataCriacao) {
-        const diferenca = Date.now() - new Date(dataCriacao).getTime();
-        
+    function tempoDecorrido(data_criacao) {
+        const diferenca = Date.now() - new Date(data_criacao).getTime();
+
         const segundos = Math.floor(diferenca / 1000);
         const minutos = Math.floor(segundos / 60);
         const horas = Math.floor(minutos / 60);
         const dias = Math.floor(horas / 24);
+        const meses = Math.floor(dias / 30);
+        const anos = Math.floor(meses / 12);
 
         if (segundos < 60) {
             setTempo(`Há alguns segundos`);
         } else if (minutos < 60) {
-            setTempo(`Há ${minutos} minuto${minutos !== 1 ? "s" : ""}`);
+            setTempo(`Há ${minutos} ${minutos !== 1 ? "minutos" : "minuto"}`);
         } else if (horas < 24) {
-            setTempo(`Há ${horas} hora${horas !== 1 ? "s" : ""}`);
+            setTempo(`Há ${horas} ${horas !== 1 ? "horas" : "hora"}`);
+        } else if (dias < 365) {
+            setTempo(`Há ${dias} ${dias !== 1 ? "dias" : "dia"}`);
+        } else if (meses < 12) {
+            setTempo(`Há ${meses} ${meses !== 1 ? "meses" : "mês"}`);
         } else {
-            setTempo(`Há ${dias} dia${dias !== 1 ? "s" : ""}`);
+            setTempo(`Há ${anos} ${anos !== 1 ? "anos" : "ano"}`);
         }
     };
 

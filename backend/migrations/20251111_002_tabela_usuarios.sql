@@ -1,3 +1,14 @@
+-- Migration: Criar tabela usuarios
+-- Data: 2025-11-11
+-- Descrição: Tabela para os usuários do sistema
+
+-- RELATÓRIO:		(Por favor, anote as alterações que fizer)
+-- 	2025-11-11
+-- 		Giovanne : Criação das tabelas e inserts
+
+
+USE CONTROLE_TREINAMENTOS;
+
 -- Criando a tebela de usuarios
 CREATE TABLE if not exists usuarios (
 	id					INT PRIMARY KEY AUTO_INCREMENT,

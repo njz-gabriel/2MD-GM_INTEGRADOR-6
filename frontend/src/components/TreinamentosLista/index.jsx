@@ -68,15 +68,16 @@ export default function TreinamentosLista({ treinamentos }) {
                     )}
                 </div>
 
+                {/* Total de treinamentos com um estado específico */}
                 <div className="d-flex flex-wrap row-gap-3 mt-3">
                     {
-                        Object.keys(Status).map((estado) => {
+                        Object.keys(Status).map((estado, index) => {
                             // Calculando o número de treinamentos com o estado determinado
                             const numeroTreinamentos = treinamentos.filter(tr => tr.estado === estado).length;
 
                             // Criando o botão
                             return (
-                                <div className="col-md-6 d-flex gap-2 align-items-center">
+                                <div key={index} className="col-md-6 d-flex gap-2 align-items-center">
                                     <div className={`bg-${Status[estado][0]} bg-opacity-10 rounded d-flex justify-content-center align-items-center`} style={{ height: '2.5rem', width: '2.5rem' }}>
                                         <i className={`fas ${Status[estado][1]} text-${Status[estado][0]}`} />
                                     </div>

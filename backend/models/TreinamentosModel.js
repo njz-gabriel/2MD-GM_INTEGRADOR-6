@@ -8,7 +8,7 @@ class TreinamentoModel {
             const connection = await getConnection();
 
             try {
-                const sql = 'SELECT * FROM treinamentos ORDER BY id';
+                const sql = 'SELECT * FROM treinamentos ORDER BY id DESC';
 
                 const [treinamentos] = await connection.query(sql);
 
