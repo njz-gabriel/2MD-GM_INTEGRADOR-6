@@ -16,7 +16,7 @@ export default function Card() {
             </h4>
           </div>
           <div className='d-flex justify-content-center align-items-center'>
-            <p>Status treinamento: { }</p>
+            <p>Cargo: { }</p>
           </div>
         </figcaption>
       </figure>

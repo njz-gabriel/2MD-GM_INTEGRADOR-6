@@ -32,25 +32,26 @@ export default function Equipes() {
     }, []);
 
     return (<>
-
+<div  className="container d-flex justify-content-center align-items-center h-100 gap-5">
         {equipes.length === 0 ? (
             <p className="text-muted mt-2">Carregando equipes...</p>
         ) : (
-            equipes.map((eq) => (
-                <div key={eq.id} className="container d-flex justify-content-center align-items-center h-100 gap-5">
-                    <div className="card profile-card">
+            equipes.map((eq) => {
+                return <div key={eq.id} className="card profile-card">
                         <div className="card-body text-center shadow-sm">
 
-                            <div className={`iconeFerramentaria shadow-sm ${eq.icone[0]}`}></div>
+                            <div className={`iconeFerramentaria shadow-sm`}>
+                                <i className={eq.icone} style={{ fontSize: "80px", width: "80px", height: "80px", lineHeight: "80px" }}></i>
+                            </div>
 
-                            <h3 className={`card-title mb-2 ${eq.estado[0]}`}></h3>
-                            <p className={`card-text text-muted mb-3 ${eq.descricao[0]}`}></p>
+                            <h3 className={`card-title mb-2`}>{eq.nome}</h3>
+                            <p className={`card-text text-muted mb-3`}>{eq.descricao}</p>
                         </div>
                     </div>
-                </div>
-            ))
+                
+            })
         )}
-
+</div>
 
 
     {/* <div className="container d-flex justify-content-center align-items-center h-100 gap-5">
