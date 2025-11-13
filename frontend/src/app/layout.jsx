@@ -26,7 +26,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${overpass.className} d-flex flex-column flex-lg-row gap-3`}>
+      <body className={`${overpass.className} d-flex flex-column-reverse flex-lg-row gap-3`}>
         {/* CSS do fa icons */}
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
