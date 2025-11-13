@@ -3,7 +3,7 @@
 :root {
   --borderRadius: 10px;
   --spacer: 1rem;
-  --primary: #406ff3;
+  --primary: #0956FF;
   --text: #6a778e;
   --linkHeight: calc(var(--spacer) * 3.5);
   --timing: 250ms;
@@ -12,13 +12,7 @@
 
 /* ===== DESKTOP ===== */
 .navbar {
-  background: #fff;
   border-radius: var(--borderRadius);
-  padding: var(--spacer) 0;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   z-index: 999;
 }
 
@@ -101,7 +95,8 @@
 /* ===== TABLET (entre 768px e 1024px) ===== */
 @media (max-width: 1024px) and (min-width: 769px) {
   .navbar {
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row; */
     top: 0;
     left: 0;
     width: 100%;
@@ -149,7 +144,7 @@
     width: 100%;
     height: var(--linkHeight);
     border-radius: 0;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     padding: 0;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.1);

@@ -13,7 +13,7 @@ export default function Navbar() {
 	}
 
 	return (
-		<nav className="navbar m-lg-3">
+		<nav className="navbar d-flex flex-row flex-lg-column shadow-sm bg-white m-lg-3 py-3">
 			<ul className="navbar__menu flex-grow-1">
 				{/* Home */}
 				<li className="navbar__item">
@@ -69,7 +69,9 @@ export default function Navbar() {
 			</ul>
 
 			{/* Logo da GM */}
-			<LogoGM tamanho={55} cor={'black'} />
+			<div className='d-none d-lg-block'>
+				<LogoGM tamanho={55} cor={'black'} />
+			</div>
 		</nav>
 	);
 }
