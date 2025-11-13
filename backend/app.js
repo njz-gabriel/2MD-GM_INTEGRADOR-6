@@ -13,6 +13,7 @@ import usuarioRotas from './routes/usuarioRotas.js';
 
 // NÓS CRIAMOS
 import treinamentosRotas from './routes/treinamentosRotas.js';
+import equipesRotas from './routes/equipesRotas.js'
 
 // Importar middlewares
 import { logMiddleware } from './middlewares/logMiddleware.js';
@@ -57,6 +58,7 @@ app.use('/api/usuarios', usuarioRotas);
 
 // NÓS CRIAMOS
 app.use('/api/treinamentos', treinamentosRotas);
+app.use('/api/equipes', equipesRotas);
 
 // Rota raiz
 app.get('/', (req, res) => {

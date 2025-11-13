@@ -1,4 +1,4 @@
-import EquipesModel from '../models/equipesModel';
+import EquipesModel from '../models/EquipesModel.js'
 import { fileURLToPath } from 'url';
 import path from 'path';
 
