@@ -1,41 +1,49 @@
+"use client";
 
-
-/*
-    Página que comtém o nome e intregrantes dos times da GM;
-    Separados por time;
-*/
-
-import Card from "@/components/CardTimes/Card"
+import { useState, useEffect } from "react";
+import Card from "@/components/CardTimes/Card";
 import './timesid.css'
 
 export default function Times() {
+  const [equipe, setEquipe] = useState(null);
 
-    return (
-        <>
-            <>
-                {/* Team 1 - Bootstrap Brain Component */}
-                <section className=" py-3 py-md-5 py-xl-8 ">
-                    <div className="containerp-3">
-                        <div className="row justify-content-md-center">
-                            <div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                                <h2 className="mb-4 display-5 text-center">#Colocar a área do time#</h2>
-                                <p className="text-secondary mb-5 text-center lead fs-4">
-                                    #Dentro da área colocar o time no qual ele faz parte#   
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="container overflow-hidden p-3">
-                        <div className="row gy-4 gy-lg-0 gx-xxl-5">
-                            {/* Fazer um map */}
-                            <div className="col-6 col-md-6 col-lg-3">
-                                <Card></Card>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </>
+  useEffect(() => {
+    async function carregarEquipe() {
+      try {
+        const res = await fetch('http://localhost:3000/api/equipes');
+        const data = await res.json();
 
-        </>
-    )
+        if (data.sucesso) {
+          // Filtra apenas a equipe 1 (supondo que id === 1)
+          const equipe1 = data.dados.find(ep => ep.id === 1);
+          setEquipe(equipe1);
+        } else {
+          console.log(data.mensagem);
+        }
+      } catch (err) {
+        console.error("Erro ao carregar equipes:", err);
+      }
+    }
+
+    carregarEquipe();
+  }, []);
+
+  if (!equipe) {
+    return <p className="text-muted mt-5 text-center">Carregando equipe...</p>;
+  }
+
+  return (
+    <section className="team-section py-5">
+      <div className="container">
+        <div className="team-header text-center mb-5">
+          <h1 className="team-title">{equipe.nome}</h1>
+          <p className="team-description">{equipe.descricao}</p>
+        </div>
+
+      <Card/>
+      
+      </div>
+    </section>
+
+  );
 }
