@@ -32,7 +32,7 @@ CREATE TABLE if not exists sessoes (
 );
 
 -- Inserindo dados de teste na tabela  de treinamentos
-INSERT INTO treinamentos (idTreinamento, dia) values 
+INSERT INTO sessoes (idTreinamento, dia) values 
 (1, '2025-11-20 12:00:00'),
 (1, '2025-11-30 10:30:00'),
 (1, '2025-12-10 14:30:00'),
