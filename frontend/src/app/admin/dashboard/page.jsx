@@ -8,20 +8,7 @@ import TreinamentosLista from "@/components/TreinamentosLista";
 import Acoes from "@/components/admin/Acoes";
 
 export default function Dashboard() {
-	const [treinamentos, setTreinamentos] = useState([
-		{ id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 5, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 6, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 7, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 8, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 9, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 10, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 11, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 12, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() }
-	]);
+	const [treinamentos, setTreinamentos] = useState([]);
 
 	const [usuario, setUsuario] = useState([]);
 
@@ -131,3 +118,19 @@ export default function Dashboard() {
 		</>
 	);
 }
+
+
+/*
+{ id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
+		{ id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
+		{ id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
+		{ id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
+		{ id: 5, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
+		{ id: 6, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
+		{ id: 7, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
+		{ id: 8, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
+		{ id: 9, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
+		{ id: 10, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
+		{ id: 11, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
+		{ id: 12, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() }
+*/
