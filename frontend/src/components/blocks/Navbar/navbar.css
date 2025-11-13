@@ -12,8 +12,6 @@
 
 /* ===== DESKTOP ===== */
 .navbar {
-    /* border-radius: var(--borderRadius); */
-    z-index: 999;
 }
 
 .navbar__menu {
