@@ -40,8 +40,10 @@ export default function Times() {
           <p className="team-description">{equipe.descricao}</p>
         </div>
 
-      <Card/>
-      
+        <div className="cardFuncionario col-4">
+          <Card />
+        </div>
+
       </div>
     </section>
 
