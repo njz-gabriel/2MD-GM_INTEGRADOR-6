@@ -14,18 +14,25 @@ export default function Cadastrar() {
     const [tipoUser, setTipoUser] = useState('mt')
     const [nomeUser, setNomeUser] = useState('')
     const [emailUser, setEmailUser] = useState('')
+    const [senhaUser, setSenhaUser] = useState('')
 
     /* Função para cadastrar o usuário no banco */
-    function Cadastrar() {
+    function Cadastrar(e) {
+        e.preventDefault();
+
         const novoUsuario = {
             nome: nomeUser,
             tipo: tipoUser,
-            email: emailUser
-        }
+            email: emailUser,
+            senha: senhaUser
+        };
 
-        fetch('', {
+        fetch('http://localhost:3000/api/usuarios', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': '?????????'
+             },
             body: JSON.stringify(novoUsuario)
         }).then( res => {
             return res.json()
@@ -34,7 +41,7 @@ export default function Cadastrar() {
                 console.log(data.dados);
             }
             else {
-                
+                console.log(data.mensagem);
             }
         }).catch(
 
@@ -56,7 +63,7 @@ export default function Cadastrar() {
                 </div>
 
                 {/* Formulário */}
-                <div className="col-md-6 ps-md-2 pt-3 pt-md-0 d-flex flex-column">
+                <form className="col-md-6 ps-md-2 pt-3 pt-md-0 d-flex flex-column" onSubmit={Cadastrar}>
                     <div className="col-12 mb-3">
                         <label htmlFor="tipoUsuario" className="form-label">Tipo de usuário</label>
                         <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setTipoUser(e.target.value)} required>
@@ -73,6 +80,11 @@ export default function Cadastrar() {
                     <div className="col-12 mb-3">
                         <label htmlFor="email" className="form-label">E-mail</label>
                         <input type="text" className="form-control bordaCinza" id="email" onChange={(e) => setEmailUser(e.target.value)} value={emailUser} placeholder="E-mail" required />
+                    </div>
+
+                    <div className="col-12 mb-3">
+                        <label htmlFor="senha" className="form-label">Senha</label>
+                        <input type="text" className="form-control bordaCinza" id="senha" onChange={(e) => setSenhaUser(e.target.value)} value={senhaUser} placeholder="Senha" required />
                     </div>
 
                     {tipoUser === 'mt' ?
@@ -94,7 +106,7 @@ export default function Cadastrar() {
                     <div className="text-end mt-auto">
                         <button className="btn btn-azulGM">Cadastrar usuário</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </>
