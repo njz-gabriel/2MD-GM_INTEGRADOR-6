@@ -12,6 +12,18 @@ export default function Dashboard() {
 
 	const [usuario, setUsuario] = useState([]);
 
+	/* Carregando o usuário logado */
+	useEffect(() => {
+		const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
+
+		// Se não houver um usuário logado ou se ele não for um admin
+		if(!usuarioLogado || usuarioLogado.usuario.tipo != 'admin') {
+			alert('NÃO HÁ UM ADMIN LOGADO')
+		}
+
+		setUsuario(usuarioLogado.usuario)
+	}, [])
+
 	/* Carregando os treinamentos */
 	useEffect(() => {
 		try {
