@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react";
 
-
 import TreinamentosLista from "@/components/TreinamentosLista";
-import AcoesRapidas from "@/components/admin/AcoesRapidas";
+import AcoesRapidas from "@/components/ft/AcoesRapidas";
+import Grafico1 from "@/components/grafico/grafico1";
+import BarChart from "@/components/grafico/grafico2";
+import StackedBarChart from "@/components/grafico/grafico3";
 
 export default function Dashboard() {
 	const [treinamentos, setTreinamentos] = useState([]);
@@ -15,8 +17,6 @@ export default function Dashboard() {
 	useEffect(() => {
 		// /perfil
 
-
-
 		const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
 
 		// Se não houver um usuário logado ou se ele não for um admin
@@ -24,7 +24,7 @@ export default function Dashboard() {
 			alert('NÃO HÁ UM ADMIN LOGADO')
 		}
 
-		setUsuario(usuarioLogado.usuario)
+		setUsuario(usuarioLogado?.usuario)
 	}, [])
 
 	/* Carregando os treinamentos */
@@ -89,7 +89,7 @@ export default function Dashboard() {
 				{/* Titulo da página*/}
 				<div className="d-flex flex-column justify-content-between mb-3">
 					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Administração</h1></div>
-					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario.nome}</p>
+					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario?.nome}</p>
 				</div>
 
 				{/* Lista e ações */}
@@ -100,6 +100,23 @@ export default function Dashboard() {
 
 					{/* Ações Rápidas */}
 					< AcoesRapidas />
+
+
+					{/* // TESTANDO GRÁFICOS = = = = = = = = = = = = = = = = = = = = */}
+					<div className="col-lg-6">
+						<div className="col-12 bg-white pe-2 rounded shadow-sm">
+							<Grafico1 />
+						</div>
+					</div>
+
+					<div className="col-lg-6">
+						<div className="col-12 bg-white ps-2 rounded shadow-sm">
+							<BarChart />
+						</div>
+					</div>
+
+					<StackedBarChart />
+					{/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */}
 
 				</div>
 			</div>
