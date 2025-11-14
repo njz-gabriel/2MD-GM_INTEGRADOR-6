@@ -6,6 +6,7 @@
         • Coletar Senha (OK)
         • Fazer requisição para verificar E-mail e senha (OK)
         • Exibir caso haja erro na requisição (OK)
+        • Salvar as informações do usuário
         • Redirecionar o usuário
 */
 
@@ -40,7 +41,10 @@ export default function Login() {
             console.log(data);
 
             if (data.sucesso) {
-                // REDIRECIONAR O USUÁRIO APÓS O LOGIN
+                // Salvando as infromações do usuário no session storage
+                sessionStorage.setItem('usuarioLogado', JSON.stringify(data.dados))
+
+                window.location.href = `/${data.dados.usuario.tipo}/dashboard`
             }
             else {
                 setErro(data.mensagem)
