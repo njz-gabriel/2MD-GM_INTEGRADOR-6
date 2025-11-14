@@ -36,7 +36,6 @@ export default function Cadastrar() {
             tipo: tipoUser,
             email: emailUser,
             senha: senhaUser,
-            id_ft: ftUser,
             id_equipe: equipeUser
         };
 
@@ -44,7 +43,7 @@ export default function Cadastrar() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': token
+                'Authorization': `bearer ${token}`
             },
             body: JSON.stringify(novoUsuario)
         }).then(res => {
@@ -100,29 +99,34 @@ export default function Cadastrar() {
 
                 {/* Formulário */}
                 <form className="col-md-6 ps-md-2 pt-3 pt-md-0 d-flex flex-column" onSubmit={Cadastrar}>
+                    {/* Tipo de usuário */}
                     <div className="col-12 mb-3">
                         <label htmlFor="tipoUsuario" className="form-label">Tipo de usuário</label>
                         <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setTipoUser(e.target.value)} required>
-                            <option value='mt'>MT - </option>
-                            <option value='ft'>FT - </option>
+                            <option value='mt'>MT - Membro de time</option>
+                            <option value='ft'>FT - Facilitador de time</option>
                         </select>
                     </div>
 
+                    {/* Nome de usuário */}
                     <div className="col-12 mb-3">
                         <label htmlFor="nome" className="form-label">Nome completo</label>
                         <input type="text" className="form-control bordaCinza" id="nome" onChange={(e) => setNomeUser(e.target.value)} value={nomeUser} placeholder="Nome completo" required />
                     </div>
 
+                    {/* Email */}
                     <div className="col-12 mb-3">
                         <label htmlFor="email" className="form-label">E-mail</label>
                         <input type="text" className="form-control bordaCinza" id="email" onChange={(e) => setEmailUser(e.target.value)} value={emailUser} placeholder="E-mail" required />
                     </div>
 
+                    {/* Senha */}
                     <div className="col-12 mb-3">
                         <label htmlFor="senha" className="form-label">Senha</label>
                         <input type="text" className="form-control bordaCinza" id="senha" onChange={(e) => setSenhaUser(e.target.value)} value={senhaUser} placeholder="Senha" required />
                     </div>
 
+                    {/* Equipe */}
                     <div className="col-12 mb-3">
                         <label htmlFor="tipoUsuario" className="form-label">Equipe</label>
                         <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setEquipeUser(e.target.value)} required>
@@ -132,28 +136,72 @@ export default function Cadastrar() {
                         </select>
                     </div>
 
-                    {tipoUser === 'mt' ?
-                        (
-                            <div className="col-12 mb-3">
-                                <label htmlFor="tipoUsuario" className="form-label">FT associado</label>
-                                <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setFTUser(e.target.value)} required>
-                                    <option value='mt'>MT - </option>
-                                </select>
-                            </div>
-                        ) : (
-                            <div className="col-12 mb-3 bg-opacity-100">
-                                <label htmlFor="tipoUsuario" className="form-label">FT associado</label>
-                                <select className="form-select bordaCinza" id="tipoUsuario" disabled></select>
-                            </div>
-                        )
-                    }
-
                     <div className="text-end mt-auto">
                         <button className="btn btn-azulGM">Cadastrar usuário</button>
                     </div>
                 </form>
             </div>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch demo modal
+            </button>
         </div>
+
+        <div
+            className="modal fade" id="exampleModal" tabIndex={-1}
+            aria-labelledby="exampleModalLabel" aria-hidden="true"
+        >
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
+                    </div>
+
+                    <div className="modal-body">
+                        Usuário cadastrado com sucesso
+                    </div>
+
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+
+                        <button type="button" className="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </>
 }
 
+/*
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+*/

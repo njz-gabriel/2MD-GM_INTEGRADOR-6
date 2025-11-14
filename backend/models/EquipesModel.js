@@ -54,7 +54,7 @@ class EquipesModel {
             const connection = await getConnection();
 
             try {
-                const sql = `SELECT id, nome, email, tipo, id_ft, id_equipe FROM usuarios u WHERE u.id_equipe = ${idEquipe};`;
+                const sql = `SELECT id, nome, email, tipo, id_equipe FROM usuarios u WHERE u.id_equipe = ${idEquipe};`;
 
                 const [membros] = await connection.query(sql);
 

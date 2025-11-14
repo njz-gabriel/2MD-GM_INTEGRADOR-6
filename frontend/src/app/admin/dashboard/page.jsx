@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import "./dashboard.css";
 
 import TreinamentosLista from "@/components/TreinamentosLista";
-import Acoes from "@/components/admin/Acoes";
+import AcoesRapidas from "@/components/admin/AcoesRapidas";
 
 export default function Dashboard() {
 	const [treinamentos, setTreinamentos] = useState([]);
@@ -14,10 +14,14 @@ export default function Dashboard() {
 
 	/* Carregando o usuário logado */
 	useEffect(() => {
+		// /perfil
+
+
+
 		const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
 
 		// Se não houver um usuário logado ou se ele não for um admin
-		if(!usuarioLogado || usuarioLogado.usuario.tipo != 'admin') {
+		if (!usuarioLogado || usuarioLogado.usuario.tipo != 'admin') {
 			alert('NÃO HÁ UM ADMIN LOGADO')
 		}
 
@@ -80,38 +84,13 @@ export default function Dashboard() {
 		})
 	};
 
-	// ===========================================================
-
-	// Atualiza os tempos automaticamente a cada minuto
-	// const [tick, setTick] = useState(0);
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		setTick(prev => prev + 1);
-	// 	}, 60000);
-	// 	return () => clearInterval(interval);
-	// }, []);
-
 	return (
 		<>
 			<div className="container py-4">
 				{/* Titulo da página*/}
 				<div className="d-flex flex-column justify-content-between mb-3">
-
 					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Administração</h1></div>
 					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario.nome}</p>
-
-
-					{/* Botão Notificações */}
-
-					{/* <button className="btn btn-outline-primary btn-sm position-relative" onClick={handleNotifications}>
-							<i className="fas fa-bell me-1" /> Notificações
-							{notificationCount > 0 && (
-								<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-									{notificationCount}
-								</span>
-							)}
-						</button> 
-					 */}
 				</div>
 
 				{/* Lista e ações */}
@@ -121,12 +100,10 @@ export default function Dashboard() {
 					<TreinamentosLista treinamentos={treinamentos} />
 
 					{/* Ações Rápidas */}
-					<Acoes />
+					< AcoesRapidas />
+
 				</div>
-
-				<button onClick={() => { exibirModal('modalRegistrarGerente') }}> teste</button>
 			</div>
-
 		</>
 	);
 }
