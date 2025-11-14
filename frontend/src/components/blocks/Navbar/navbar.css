@@ -10,7 +10,6 @@
     --transition: all var(--timing) ease;
 }
 
-.navbar {}
 
 /* ===== DESKTOP e TABLET ===== */
 .navbar__menu {
@@ -29,6 +28,8 @@
     text-decoration: none;
     color: var(--text);
     transition: var(--transition);
+
+    position: relative;
 }
 
 .navbar__link span {
@@ -72,8 +73,6 @@
 }
 
 /* ===== CELULAR ===== */
-
-.navbar {}
 
 .navbar__menu {
     list-style: none;
