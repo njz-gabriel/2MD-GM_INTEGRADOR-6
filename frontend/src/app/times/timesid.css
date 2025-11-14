@@ -1,56 +1,24 @@
 .team-section {
-  padding: 60px 0;
+  padding: 70px 0;
 }
 
-.team-header .team-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #0956FF; /* Azul GM */
+.team-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0956FF;
 }
 
-.team-header .team-description {
-  font-size: 1.2rem;
-  color: #555;
-  margin-top: 10px;
+.team-description {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 700px;
+  margin: 10px auto 0 auto;
 }
 
-.row.justify-content-center {
+.team-cards-container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
-}
-
-.card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  width: 300px;
-  height: 300px;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-}
-
-.card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-}
-
-.card h5 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.card p {
-  font-size: 0.9rem;
-  color: #777;
+  gap: 30px;
+  margin-top: 40px;
 }

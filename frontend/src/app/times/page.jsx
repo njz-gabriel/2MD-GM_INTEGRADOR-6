@@ -14,7 +14,6 @@ export default function Times() {
         const data = await res.json();
 
         if (data.sucesso) {
-          // Filtra apenas a equipe 1 (supondo que id === 1)
           const equipe1 = data.dados.find(ep => ep.id === 1);
           setEquipe(equipe1);
         } else {
@@ -33,19 +32,22 @@ export default function Times() {
   }
 
   return (
-    <section className="team-section py-5">
+    <section className="team-section">
       <div className="container">
-        <div className="team-header text-center mb-5">
+
+        <div className="team-header text-center mb-4">
           <h1 className="team-title">{equipe.nome}</h1>
           <p className="team-description">{equipe.descricao}</p>
         </div>
 
-        <div className="cardFuncionario col-4">
+        <div className="team-cards-container">
+          <Card />
+          <Card />
+          <Card />
           <Card />
         </div>
 
       </div>
     </section>
-
   );
 }
