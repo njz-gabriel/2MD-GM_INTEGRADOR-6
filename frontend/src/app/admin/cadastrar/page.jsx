@@ -11,10 +11,21 @@
 import { useState, useEffect } from "react"
 
 export default function Cadastrar() {
+    const [token, setToken] = useState(null)
+
     const [tipoUser, setTipoUser] = useState('mt')
     const [nomeUser, setNomeUser] = useState('')
     const [emailUser, setEmailUser] = useState('')
     const [senhaUser, setSenhaUser] = useState('')
+    const [ftUser, setFTUser] = useState('')
+    const [equipeUser, setEquipeUser] = useState('')
+
+    /* Pegando o token do sessionStorage */
+    useEffect(() => {
+        const tk = JSON.parse(sessionStorage.getItem('usuarioLogado')).token;
+        console.log(tk);
+        setToken(tk)
+    }, [])
 
     /* Função para cadastrar o usuário no banco */
     function Cadastrar(e) {
@@ -24,17 +35,19 @@ export default function Cadastrar() {
             nome: nomeUser,
             tipo: tipoUser,
             email: emailUser,
-            senha: senhaUser
+            senha: senhaUser,
+            id_ft: ftUser,
+            id_equipe: equipeUser
         };
 
         fetch('http://localhost:3000/api/usuarios', {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
-                'Authorization': '?????????'
-             },
+                'Authorization': token
+            },
             body: JSON.stringify(novoUsuario)
-        }).then( res => {
+        }).then(res => {
             return res.json()
         }).then(data => {
             if (data.sucesso) {
@@ -47,6 +60,29 @@ export default function Cadastrar() {
 
         )
     }
+
+
+    const [equipes, setEquipes] = useState([]);
+
+    useEffect(() => {
+        async function carregarEquipes() {
+            try {
+                const res = await fetch('http://localhost:3000/api/equipes');
+                const data = await res.json();
+
+                if (data.sucesso) {
+                    console.log(data.dados)
+                    setEquipes(data.dados);
+                } else {
+                    console.log(data.mensagem);
+                }
+            } catch (err) {
+                console.error("Erro ao carregar equipes:", err);
+            }
+        }
+
+        carregarEquipes();
+    }, []);
 
     return <>
         <div className="container py-4">
@@ -87,11 +123,20 @@ export default function Cadastrar() {
                         <input type="text" className="form-control bordaCinza" id="senha" onChange={(e) => setSenhaUser(e.target.value)} value={senhaUser} placeholder="Senha" required />
                     </div>
 
+                    <div className="col-12 mb-3">
+                        <label htmlFor="tipoUsuario" className="form-label">Equipe</label>
+                        <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setEquipeUser(e.target.value)} required>
+                            {
+                                equipes.map((eq) => <option key={eq.id} value={eq.id}>{eq.nome}</option>)
+                            }
+                        </select>
+                    </div>
+
                     {tipoUser === 'mt' ?
                         (
                             <div className="col-12 mb-3">
                                 <label htmlFor="tipoUsuario" className="form-label">FT associado</label>
-                                <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setTipoUsuario(e.target.value)} required>
+                                <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setFTUser(e.target.value)} required>
                                     <option value='mt'>MT - </option>
                                 </select>
                             </div>

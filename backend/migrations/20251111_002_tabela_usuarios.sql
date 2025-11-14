@@ -27,7 +27,7 @@ CREATE TABLE if not exists usuarios (
 -- Usuarios de teste (a senha é 123456)
 INSERT INTO usuarios (nome, email, senha, tipo, id_ft,id_equipe) VALUES
 ('Administrador', 'admin@produtos.com', '$2a$10$BLAcJu1irAzg06WbtoLoPe0RA.hkfZ0oJ25KYARPkHWRweJuWBALy', 'admin', null, null),
-('FT', 'joao@email.com', '$2a$10$BLAcJu1irAzg06WbtoLoPe0RA.hkfZ0oJ25KYARPkHWRweJuWBALy', 'ft', null, 1),
-('MT', 'maria@email.com', '$2a$10$BLAcJu1irAzg06WbtoLoPe0RA.hkfZ0oJ25KYARPkHWRweJuWBALy', 'mt', 2, 1);
+('Maria', 'joao@email.com', '$2a$10$BLAcJu1irAzg06WbtoLoPe0RA.hkfZ0oJ25KYARPkHWRweJuWBALy', 'ft', null, 1),
+('João', 'maria@email.com', '$2a$10$BLAcJu1irAzg06WbtoLoPe0RA.hkfZ0oJ25KYARPkHWRweJuWBALy', 'mt', 2, 1);
 
 select * from usuarios;

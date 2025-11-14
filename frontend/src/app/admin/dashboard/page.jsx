@@ -97,7 +97,7 @@ export default function Dashboard() {
 				{/* Titulo da página*/}
 				<div className="d-flex flex-column justify-content-between mb-3">
 
-					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Treinamento</h1></div>
+					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Administração</h1></div>
 					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario.nome}</p>
 
 

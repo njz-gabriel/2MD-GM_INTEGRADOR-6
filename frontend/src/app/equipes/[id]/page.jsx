@@ -71,7 +71,7 @@ export default function Times() {
 
 				<div className="team-cards-container">
 					{
-						membros.map((m) => <Card key={m.id}/>)
+						membros.map((m) => <Card key={m.id} pessoa={m} />)
 					}
 				</div>
 

@@ -27,10 +27,6 @@ export default function Equipes() {
         carregarEquipes();
     }, []);
 
-    // function handleEquipeClick(eq) {
-    //     router.push(`/times/${eq.id}`);
-    // }
-
     return (
         <div className="equipes-wrapper">
             <div className="logo">
