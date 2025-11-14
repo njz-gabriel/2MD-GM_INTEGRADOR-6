@@ -27,9 +27,9 @@ export default function Equipes() {
         carregarEquipes();
     }, []);
 
-    function handleEquipeClick(eq) {
-        router.push(`/times/${eq.id}`);
-    }
+    // function handleEquipeClick(eq) {
+    //     router.push(`/times/${eq.id}`);
+    // }
 
     return (
         <div className="equipes-wrapper">
@@ -49,7 +49,7 @@ export default function Equipes() {
                         <div
                             key={eq.id}
                             className="card profile-card shadow"
-                            onClick={() => handleEquipeClick(eq)}
+                            onClick={() => window.location.href = `/equipes/${eq.id}`}
                         >
                             <div className="card-body">
                                 <div className="iconeFerramentaria">
