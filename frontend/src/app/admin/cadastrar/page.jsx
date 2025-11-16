@@ -2,67 +2,67 @@
 
 /*
     Página para que o admin realize o cadastro de um novo usuário
-        • Coletar nome    
-        • Coletar E-mail
-        • Tipo de usuário
-        • Se o usuário for MT, pegar o FT a qual ele deve ser associado
+        • Verificar se há um admin logado (OK)
+        • Coletar dados (Tipo, nome, email, senha e equipe) (OK)
+        • Cadastrar o usuário no banco (OK)
 */
 
 import { useState, useEffect } from "react"
 
+import AcessoRestrito from "@/components/Sweetalert/AcessoRestrito";
+
+import Swal from "sweetalert2";
+
 export default function Cadastrar() {
-    const [token, setToken] = useState(null)
+    const [usuario, setUsuario] = useState([]);
+    const [acesso, setAcesso] = useState(null);
 
-    const [tipoUser, setTipoUser] = useState('mt')
-    const [nomeUser, setNomeUser] = useState('')
-    const [emailUser, setEmailUser] = useState('')
-    const [senhaUser, setSenhaUser] = useState('')
-    const [ftUser, setFTUser] = useState('')
-    const [equipeUser, setEquipeUser] = useState('')
+    // Dados do novo usuário
+    const [tipoUser, setTipoUser] = useState('mt');
+    const [nomeUser, setNomeUser] = useState('');
+    const [emailUser, setEmailUser] = useState('');
+    const [senhaUser, setSenhaUser] = useState('');
+    const [equipeUser, setEquipeUser] = useState('');
 
-    /* Pegando o token do sessionStorage */
+    const [erro, setErro] = useState(null)
+
+    /* Carregando o usuário logado */
     useEffect(() => {
-        const tk = JSON.parse(sessionStorage.getItem('usuarioLogado')).token;
-        console.log(tk);
-        setToken(tk)
+        try {
+            async function carregarUsuario() {
+                const res = await fetch('http://localhost:3000/api/auth/perfil', {
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                    }
+                });
+                const data = await res.json();
+
+                // Verificando se há um usuário logado
+                if (data.sucesso) {
+                    setUsuario(data.dados)
+
+                    // Verificando se o usuário é um admin
+                    if (data.dados.tipo === 'admin') {
+                        setAcesso(true)
+                    }
+                    else {
+                        setAcesso(false)
+                    }
+                }
+                else {
+                    setAcesso(false)
+                }
+            }
+
+            carregarUsuario()
+        }
+        catch {
+            setAcesso(false)
+        }
     }, [])
 
-    /* Função para cadastrar o usuário no banco */
-    function Cadastrar(e) {
-        e.preventDefault();
-
-        const novoUsuario = {
-            nome: nomeUser,
-            tipo: tipoUser,
-            email: emailUser,
-            senha: senhaUser,
-            id_equipe: equipeUser
-        };
-
-        fetch('http://localhost:3000/api/usuarios', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `bearer ${token}`
-            },
-            body: JSON.stringify(novoUsuario)
-        }).then(res => {
-            return res.json()
-        }).then(data => {
-            if (data.sucesso) {
-                console.log(data.dados);
-            }
-            else {
-                console.log(data.mensagem);
-            }
-        }).catch(
-
-        )
-    }
-
-
+    /* Carregando as equipes */
     const [equipes, setEquipes] = useState([]);
-
     useEffect(() => {
         async function carregarEquipes() {
             try {
@@ -83,13 +83,110 @@ export default function Cadastrar() {
         carregarEquipes();
     }, []);
 
-    return <>
+    /* Função para cadastrar o usuário no banco */
+    function Cadastrar(e) {
+        e.preventDefault();
+
+        setErro(null)
+
+        const novoUsuario = {
+            nome: nomeUser,
+            tipo: tipoUser,
+            email: emailUser,
+            senha: senhaUser,
+            id_equipe: equipeUser
+        };
+
+        fetch('http://localhost:3000/api/usuarios', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            },
+            body: JSON.stringify(novoUsuario)
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            if (data.sucesso) {
+                // Alerta de usuário cadastrado
+                Swal.fire({
+                    title: "Usuário cadastrado",
+                    html: `
+                        <p class="mb-2">O usuário foi cadastrado com as seguintes informações:</p>
+                        <div class="text-start p-3 border rounded" style="background:#f8f9fa;">
+                            <table class="table table-sm mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th class="fw-bold">Nome</th>
+                                        <td>${data.dados.nome}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-bold">Email</th>
+                                        <td>${data.dados.email}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-bold">Equipe</th>
+                                        <td>${equipes.find(eq => eq.id == data.dados.id_equipe)?.nome}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-bold">Cargo</th>
+                                        <td>${data.dados.tipo === 'mt' ? 'Membro de time' : 'Facilitador de time'}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `,
+                    icon: "success",
+                    confirmButtonText: "Fechar",
+                    confirmButtonColor: "#0956FF"
+                });
+
+            }
+            else {
+                setErro(data.mensagem)
+            }
+        }).catch(err =>
+            setErro('Erro ao solicitar login, tente novamente mais tarde.')
+        )
+    }
+
+
+    //  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+    // EXIBIÇÃO DA PÁGINA = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+    // Se o acesso foi negado
+    if (acesso === false) return (
+        <>
+            <div className="vh-100"></div>
+
+            {/* Exibindo alerta dizendo que o acesso foi negado */}
+            <AcessoRestrito text={`
+                    Essa página é <b>restrita a administradores</b>.<br>
+                    Você será redirecionado em alguns segundos
+                `} />
+
+            {/* Redirecionando o usuário */}
+            {
+                setTimeout(() => {
+                    usuario.tipo
+                        ? window.location.href = `/${usuario.tipo}/dashboard`
+                        : window.location.href = '/login'
+                }, 3500)
+            }
+        </>
+    )
+
+    // Se o acesso foi permitido
+    if (acesso === true) return <>
         <div className="container py-4">
+            {/* Título da página */}
             <div className="d-flex flex-column justify-content-between mb-3">
                 <div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Cadastrar usuário</h1></div>
             </div>
 
+            {/* Corpo da página */}
             <div className="col-12 d-flex flex-column flex-md-row bg-white shadow-sm d-flex my-4 p-3 rounded">
+                {/* Icone de usuario */}
                 <div className="col-md-6 pe-md-2 d-flex justify-content-center align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="75%" height="auto" fill="#0956FF" className="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -130,78 +227,19 @@ export default function Cadastrar() {
                     <div className="col-12 mb-3">
                         <label htmlFor="tipoUsuario" className="form-label">Equipe</label>
                         <select className="form-select bordaCinza" id="tipoUsuario" onChange={(e) => setEquipeUser(e.target.value)} required>
-                            {
-                                equipes.map((eq) => <option key={eq.id} value={eq.id}>{eq.nome}</option>)
-                            }
+                            {equipes.map((eq) => <option key={eq.id} value={eq.id}>{eq.nome}</option>)}
                         </select>
                     </div>
 
+                    {/* Botão para cadastrar */}
                     <div className="text-end mt-auto">
                         <button className="btn btn-azulGM">Cadastrar usuário</button>
                     </div>
+
+                    {/* Erro */}
+                    <div className='text-danger medium'>{erro}</div>
                 </form>
             </div>
-
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button>
         </div>
-
-        <div
-            className="modal fade" id="exampleModal" tabIndex={-1}
-            aria-labelledby="exampleModalLabel" aria-hidden="true"
-        >
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
-                    </div>
-
-                    <div className="modal-body">
-                        Usuário cadastrado com sucesso
-                    </div>
-
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
-
-                        <button type="button" className="btn btn-primary">
-                            Save changes
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </>
 }
-
-/*
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-*/
