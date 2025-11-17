@@ -55,13 +55,23 @@ export default function Navbar() {
 		</>;
 	}
 	else if (acesso) return (
+
 		<nav className="z-3 d-flex flex-row flex-lg-column align-items-center shadow bg-white border rounded m-lg-3 py-3 me-lg-0">
-			{console.log(acesso)}
+			{/* Logo da GM */}
+			<div className="navbar__item d-flex align-items-center justify-content-center">
+				<a href="/perfil" className="navbar__link rounded d-flex align-items-center justify-content-center">
+					<div className='d-none d-lg-block rounded overflow-hidden' style={{ width: '3.75rem', border: '0.22rem black solid' }}>
+						<img src={usuario.imagem ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} className='imgCompleta' />
+					</div>
+					<span className='rounded fw-bold d-none d-lg-block bg-black'>Perfil</span>
+				</a>
+			</div>
+
 			{/* Navbar - Tablet e Desktop */}
 			<div className="navbar__menu flex-grow-1 d-none d-md-flex flex-lg-column justify-content-center flex-wrap row-gap-2 p-3">
 				{/* Home */}
 				<div className="navbar__item d-flex align-items-center justify-content-center">
-					<a href="#" className="navbar__link rounded d-flex align-items-center justify-content-center">
+					<a href={`/${usuario.tipo}/dashboard`} className="navbar__link rounded d-flex align-items-center justify-content-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
 							<path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
 						</svg>
@@ -213,7 +223,7 @@ export default function Navbar() {
 
 			{/* Redirecionando o usuário */}
 			{
-				setTimeout(() => {window.location.href = '/login'}, 3400)
+				setTimeout(() => { window.location.href = '/login' }, 3400)
 			}
 		</div>
 	);
