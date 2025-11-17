@@ -1,6 +1,5 @@
 .card-funcionario {
-  width: 220px;        
-  margin: 0 auto;
+  width: 220px; 
   transition: transform .3s ease;
 }
 
@@ -15,7 +14,7 @@
 }
 
 .card-body {
-  padding: 15px !important;
+  padding: 1rem !important;
 }
 
 .card-body h6 {

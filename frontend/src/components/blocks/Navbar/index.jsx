@@ -13,7 +13,7 @@ export default function Navbar() {
 	}
 
 	return (
-		<nav className="z-3 d-flex flex-row flex-lg-column shadow-sm bg-white m-lg-3 py-3 rounded align-items-center">
+		<nav className="z-3 d-flex flex-row flex-lg-column align-items-center shadow bg-white border rounded m-lg-3 py-3 me-lg-0">
 			{/* Navbar - Tablet e Desktop */}
 			<div className="navbar__menu flex-grow-1 d-none d-md-flex flex-lg-column justify-content-center flex-wrap row-gap-2 p-3">
 				{/* Home */}

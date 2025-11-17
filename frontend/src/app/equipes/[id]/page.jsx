@@ -1,5 +1,11 @@
 "use client";
 
+/*
+	Página para listar os membros da equipe
+		• Listar os membros (OK)
+		• Ao selecionar um membro, abrir modal com os dados do funcionário 
+*/
+
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 
@@ -12,6 +18,8 @@ export default function Times() {
 
 	const [equipe, setEquipe] = useState(null);
 	const [membros, setMembros] = useState([]);
+	const [ft, setFT] = useState([])
+	const [mt, setMT] = useState([])
 
 	// Carregando a equipe
 	useEffect(() => {
@@ -21,7 +29,6 @@ export default function Times() {
 				const data = await res.json();
 
 				if (data.sucesso) {
-					console.log(data)
 					setEquipe(data.dados[0]);
 				} else {
 					console.log(data.mensagem);
@@ -42,7 +49,6 @@ export default function Times() {
 				const data = await res.json();
 
 				if (data.sucesso) {
-					console.log(data);
 					setMembros(data.dados);
 				} else {
 					console.log(data.mensagem);
@@ -53,7 +59,13 @@ export default function Times() {
 		}
 
 		carregarMenbros();
-	}, []);
+	}, [equipe]);
+
+	// Filtrando os membros pelo cargo
+	useEffect(() => {
+		setFT(membros.filter((m) => m.tipo === 'ft'));
+		setMT(membros.filter((m) => m.tipo === 'mt'));
+	}, [membros]);
 
 	if (!equipe) {
 		return <p className="text-muted mt-5 text-center">Carregando equipe...</p>;
@@ -62,16 +74,25 @@ export default function Times() {
 	return (
 		<section className="team-section">
 			<div className="container">
-
+				{/* Nome e descrição da equipe */}
 				<div className="team-header text-center mb-4">
-					{console.log(equipe)}
 					<h1 className="team-title">{equipe.nome}</h1>
 					<p className="team-description">{equipe.descricao}</p>
 				</div>
 
-				<div className="team-cards-container">
+				{/* Listando os FTs da equipe */}
+				<div className="d-flex flex-wrap justify-content-center mt-4 gap-3">
+					<div className="col-12 text-secondary text-center fs-5">Facilitadores de time</div>
 					{
-						membros.map((m) => <Card key={m.id} pessoa={m} />)
+						ft.map((m) => <Card key={m.id} pessoa={m} />)
+					}
+				</div>
+
+				{/* Listando os MTs da equipe */}
+				<div className="d-flex flex-wrap justify-content-center mt-4 gap-3">
+					<div className="col-12 text-secondary text-center fs-5">Membros de time</div>
+					{
+						mt.map((m) => <Card key={m.id} pessoa={m} />)
 					}
 				</div>
 
