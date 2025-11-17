@@ -13,22 +13,22 @@ export default function Card({
 				/>
 			</div>
 
-			<div className=" rounded-3   mt-n3 card-body">
+			<div className=" rounded-3 mt-n3 card-body">
 				<h6 className="fw-700 dark-color mb-1">{pessoa.nome}</h6>
 				<small>{
 					pessoa.tipo === 'ft' ? ('Facilitador de time') : ('Membro de time')
 				}</small>
 
-				<div className="pt-2 card-icons">
-					<a className="icon-sm bg-primary rounded-circle me-1 text-white" href="">
+				<div className="pt-2 card-icons gap-1">
+					<a className="icon-sm bg-primary rounded-circle text-white" href="">
 						<i className="bi bi-envelope"></i>
 					</a>
 
-					<a className="icon-sm bg-primary rounded-circle me-1 text-white" href="">
+					<a className="icon-sm bg-primary rounded-circle text-white" href="">
 						<i className="bi bi-linkedin"></i>
 					</a>
 
-					<a className="icon-sm bg-primary rounded-circle me-1 text-white" href="">
+					<a className="icon-sm bg-primary rounded-circle text-white" href="">
 						<i className="bi bi-telephone"></i>
 					</a>
 				</div>

@@ -1,19 +1,62 @@
 'use client'
 
 import { usePathname } from 'next/navigation';
+import { useState, useEffect } from "react";
 
 import './navbar.css'
+
 import LogoGM from '@/components/LogoGM';
+import AcessoRestrito from '@/components/Sweetalert/AcessoRestrito';
 
 export default function Navbar() {
+	const [usuario, setUsuario] = useState([]);
+	const [acesso, setAcesso] = useState(null);
+
+	/* Carregando o usuário logado */
+	useEffect(() => {
+		try {
+			async function carregarUsuario() {
+				const res = await fetch('http://localhost:3000/api/auth/perfil', {
+					headers: {
+						'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+					}
+				});
+				const data = await res.json();
+
+				// Verificando se há um usuário logado
+				if (data.sucesso) {
+					setUsuario(data.dados)
+
+					// Verificando se o usuário é um admin
+					if (data.dados.tipo === 'admin') {
+						setAcesso(true)
+					}
+					else {
+						setAcesso(false)
+					}
+				}
+				else {
+					setAcesso(false)
+				}
+			}
+
+			carregarUsuario()
+		}
+		catch {
+			setAcesso(false)
+		}
+	}, [])
+
+
 	// Retornando uma tag vazia em páginas que não têm Navbar
 	const pathname = usePathname();
-	if (['/', '/login', '/configuracoes'].includes(pathname)) {
-		return <></>;
+	if (['/', '/login'].includes(pathname)) {
+		return <>
+		</>;
 	}
-
-	return (
-		<nav className="z-3 d-flex flex-row flex-lg-column shadow-sm bg-white m-lg-3 py-3 rounded align-items-center">
+	else if (acesso) return (
+		<nav className="z-3 d-flex flex-row flex-lg-column align-items-center shadow bg-white border rounded m-lg-3 py-3 me-lg-0">
+			{console.log(acesso)}
 			{/* Navbar - Tablet e Desktop */}
 			<div className="navbar__menu flex-grow-1 d-none d-md-flex flex-lg-column justify-content-center flex-wrap row-gap-2 p-3">
 				{/* Home */}
@@ -158,20 +201,20 @@ export default function Navbar() {
 				<LogoGM tamanho={55} cor={'black'} />
 			</div>
 		</nav>
+	)
+	// Se não há um usuário logado
+	else if (acesso === false) return (
+		<div>
+			{/* Alerta de Acesso negado */}
+			<AcessoRestrito text={`
+				Você precisa estar logado para navegar pelo site</b>.<br>
+				Você será redirecionado em alguns segundos
+			`} />
+
+			{/* Redirecionando o usuário */}
+			{
+				setTimeout(() => {window.location.href = '/login'}, 3400)
+			}
+		</div>
 	);
 }
-
-
-// .navbar__link {
-//     width: 3.5rem;
-//     height: 3.5rem;
-//     position: relative;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     color: var(--text);
-//     transition: var(--transition);
-//     font-family: 'Open Sans', sans-serif;
-//     border-radius: calc(var(--borderRadius) * 1.75);
-// }
-

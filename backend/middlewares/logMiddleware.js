@@ -100,7 +100,7 @@ function sanitizeRequestBody(body) {
 // Função para salvar o log no banco de dados
 async function saveLog(logData) {
     try {
-        console.log(logData);
+        // console.log(logData);
         
         await create('logs', logData);
     } catch (error) {

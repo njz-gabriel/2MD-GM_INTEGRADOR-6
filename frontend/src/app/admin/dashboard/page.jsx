@@ -1,30 +1,58 @@
-"use client";
+'use client';
+
+/*
+    Página inicial do admin 
+        • Verificar se há um admin logado (OK)
+		• Exibir os treinamentos (OK)
+*/
 
 import { useState, useEffect } from "react";
 
 
+// Componentes
 import TreinamentosLista from "@/components/TreinamentosLista";
 import AcoesRapidas from "@/components/admin/AcoesRapidas";
+import AcessoRestrito from "@/components/Sweetalert/AcessoRestrito";
+
 
 export default function Dashboard() {
-	const [treinamentos, setTreinamentos] = useState([]);
-
 	const [usuario, setUsuario] = useState([]);
+	const [treinamentos, setTreinamentos] = useState([]);
+	const [acesso, setAcesso] = useState(null);
 
 	/* Carregando o usuário logado */
 	useEffect(() => {
-		// /perfil
+		try {
+			async function carregarUsuario() {
+				const res = await fetch('http://localhost:3000/api/auth/perfil', {
+					headers: {
+						'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+					}
+				});
+				const data = await res.json();
 
+				// Verificando se há um usuário logado
+				if (data.sucesso) {
+					setUsuario(data.dados)
 
+					// Verificando se o usuário é um admin
+					if (data.dados.tipo === 'admin') {
+						setAcesso(true)
+					}
+					else {
+						setAcesso(false)
+					}
+				}
+				else {
+					setAcesso(false)
+				}
+			}
 
-		const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
-
-		// Se não houver um usuário logado ou se ele não for um admin
-		if (!usuarioLogado || usuarioLogado.usuario.tipo != 'admin') {
-			alert('NÃO HÁ UM ADMIN LOGADO')
+			carregarUsuario()
 		}
-
-		setUsuario(usuarioLogado.usuario)
+		catch {
+			setAcesso(false)
+		}
 	}, [])
 
 	/* Carregando os treinamentos */
@@ -49,41 +77,36 @@ export default function Dashboard() {
 		catch {
 			/* Erro caso a API esteja desligada */
 		}
-	}, [])
+	}, [usuario])
 
-	/* Função para abrir um modal */
-	function exibirModal(idModal) {
-		const modalHTML = document.getElementById(idModal);
-		const modal = new bootstrap.Modal(modalHTML);
-		modal.show();
-	}
 
-	/* Função para cadastrar um novo treinamento */
-	function criarTreinamento() {
-		// Criando o objeto do treinamento
-		const dadosTreinamento = {
-			nome: "sadasd",
-			descricao: "dsad"
-		}
+	//  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+	// EXIBIÇÃO DA PÁGINA = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		// Fazendo a requisição para criar o treinamento
-		fetch('http://localhost:3000/api/treinamentos', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(dadosTreinamento)
-		}).then(res => {
-			res.json()
-		}).then(data => {
-			if (data.sucesso) {
+	// Se o acesso foi negado
+	if (acesso === false) return (
+		<>
+			<div className="vh-100"></div>
 
+			{/* Exibindo alerta dizendo que o acesso foi negado */}
+			<AcessoRestrito text={`
+				Essa página é <b>restrita a administradores</b>.<br>
+				Você será redirecionado em alguns segundos
+			`} />
+
+			{/* Redirecionando o usuário */}
+			{
+				setTimeout(() => {
+					usuario.tipo
+						? window.location.href = `/${usuario.tipo}/dashboard`
+						: window.location.href = '/login'
+				}, 3500)
 			}
-			else {
-				console.log(data.mensagem);
-			}
-		})
-	};
+		</>
+	)
 
-	return (
+	// Se o acesso foi permitido
+	if (acesso === true) return (
 		<>
 			<div className="container py-4">
 				{/* Titulo da página*/}
@@ -109,16 +132,16 @@ export default function Dashboard() {
 
 
 /*
-{ id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 5, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 6, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 7, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 8, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 9, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 10, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 11, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 12, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() }
+	{ id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
+	{ id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
+	{ id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
+	{ id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
+	{ id: 5, nome: "Treinamento 5", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
+	{ id: 6, nome: "Treinamento 6", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
+	{ id: 7, nome: "Treinamento 7", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
+	{ id: 8, nome: "Treinamento 8", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
+	{ id: 9, nome: "Treinamento 9", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
+	{ id: 10, nome: "Treinamento 10", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
+	{ id: 11, nome: "Treinamento 11", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
+	{ id: 12, nome: "Treinamento 12", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() }
 */
