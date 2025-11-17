@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 
 import TreinamentosLista from "@/components/TreinamentosLista";
 import AcoesRapidas from "@/components/ft/AcoesRapidas";
-import Grafico1 from "@/components/grafico/grafico1";
-import BarChart from "@/components/grafico/grafico2";
-import StackedBarChart from "@/components/grafico/grafico3";
+import Grafico1 from "@/components/Graficos/grafico1";
+import BarChart from "@/components/Graficos/TreinamentosRealizados";
+import StackedBarChart from "@/components/Graficos/grafico3";
 
 export default function Dashboard() {
 	const [treinamentos, setTreinamentos] = useState([]);

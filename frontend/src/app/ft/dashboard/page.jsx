@@ -4,14 +4,20 @@ import { useState, useEffect } from "react";
 
 import TreinamentosLista from "@/components/TreinamentosLista";
 import AcoesRapidas from "@/components/ft/AcoesRapidas";
-import Grafico1 from "@/components/grafico/grafico1";
-import BarChart from "@/components/grafico/grafico2";
-import StackedBarChart from "@/components/grafico/grafico3";
+
+// Gráficos
+import EstadosTreinamentos from "@/components/Graficos/EstadosTreinamentos";
+import TreinamentosRealizados from "@/components/Graficos/TreinamentosRealizados";
+import TreinamentosOfertados from "@/components/Graficos/TreinamentosOfertados";
+
+import StackedBarChart from "@/components/Graficos/grafico3";
+import Grafico1 from "@/components/Graficos/grafico1";
 
 export default function Dashboard() {
-	const [treinamentos, setTreinamentos] = useState([]);
-
 	const [usuario, setUsuario] = useState([]);
+	const [treinamentosRealizados, setTreinamentosRealizados] = useState([]);
+	const [treinamentosOferecidos, setTreinamentosOferecidos] = useState([]);
+
 
 	/* Carregando o usuário logado */
 	useEffect(() => {
@@ -19,15 +25,10 @@ export default function Dashboard() {
 
 		const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
 
-		// Se não houver um usuário logado ou se ele não for um admin
-		if (!usuarioLogado || usuarioLogado.usuario.tipo != 'admin') {
-			alert('NÃO HÁ UM ADMIN LOGADO')
-		}
-
 		setUsuario(usuarioLogado?.usuario)
 	}, [])
 
-	/* Carregando os treinamentos */
+	/* Carregando os treinamentos do usuario*/
 	useEffect(() => {
 		try {
 			async function carregarTreinamentos() {
@@ -37,7 +38,7 @@ export default function Dashboard() {
 				if (data.sucesso) {
 					console.log(data.dados);
 
-					setTreinamentos(data.dados);
+					setTreinamentosRealizados(data.dados);
 				}
 				else {
 					console.log(data.mensagem);
@@ -96,26 +97,48 @@ export default function Dashboard() {
 				<div className="row g-3">
 
 					{/* Listagem de treinamentos */}
-					<TreinamentosLista treinamentos={treinamentos} />
+					<div className="col-lg-7">
+						<TreinamentosLista treinamentos={treinamentosRealizados} />
+					</div>
 
-					{/* Ações Rápidas */}
-					< AcoesRapidas />
+					<div className="col-lg-5">
+						<div className="col-12 h-50 pb-2">
+							{/* Ações Rápidas */}
+							< AcoesRapidas />
+						</div>
 
+						<div className="col-12 h-50 pt-2">
+							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
+								<EstadosTreinamentos treinamentos={treinamentosRealizados}/>
+							</div>
+						</div>
+
+					</div>
+
+					<div className="col-12 d-flex flex-wrap">
+						{/* Grafico de treinamento realizado*/}
+						<div className="col-md-6 pt-2 pe-md-2">
+							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
+								<TreinamentosRealizados />
+							</div>
+						</div>
+
+						{/* Grafico de treinamento ofertados*/}
+						<div className="col-md-6 pt-2 ps-md-2">
+							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
+								<TreinamentosOfertados />
+							</div>
+						</div>
+					</div>
 
 					{/* // TESTANDO GRÁFICOS = = = = = = = = = = = = = = = = = = = = */}
-					<div className="col-lg-6">
-						<div className="col-12 bg-white pe-2 rounded shadow-sm">
-							<Grafico1 />
-						</div>
-					</div>
+					{/* <div className="col-lg-6">
+							<div className="col-12 bg-white pe-2 rounded shadow-sm">
+								<Grafico1 />
+							</div>
+						</div> */}
 
-					<div className="col-lg-6">
-						<div className="col-12 bg-white ps-2 rounded shadow-sm">
-							<BarChart />
-						</div>
-					</div>
-
-					<StackedBarChart />
+					{/* <StackedBarChart /> */}
 					{/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */}
 
 				</div>

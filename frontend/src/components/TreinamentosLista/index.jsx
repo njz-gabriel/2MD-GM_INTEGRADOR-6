@@ -21,7 +21,7 @@ export default function TreinamentosLista({ treinamentos }) {
         : treinamentos;
 
     return (
-        <div className="col-12 col-lg-8">
+        <div className="col-12">
             <div className="col-12 card border-0 shadow-sm p-3">
                 {/* Título */}
                 <div className="card-header bg-white border-0 px-0">

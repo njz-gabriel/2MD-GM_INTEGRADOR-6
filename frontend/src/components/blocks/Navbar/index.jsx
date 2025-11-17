@@ -25,15 +25,11 @@ export default function Navbar() {
 
 				// Verificando se há um usuário logado
 				if (data.sucesso) {
+					console.log(data);
+
 					setUsuario(data.dados)
 
-					// Verificando se o usuário é um admin
-					if (data.dados.tipo === 'admin') {
-						setAcesso(true)
-					}
-					else {
-						setAcesso(false)
-					}
+					setAcesso(true)
 				}
 				else {
 					setAcesso(false)
@@ -223,7 +219,7 @@ export default function Navbar() {
 
 			{/* Redirecionando o usuário */}
 			{
-				setTimeout(() => { window.location.href = '/login' }, 3400)
+				// setTimeout(() => { window.location.href = '/login' }, 3400)
 			}
 		</div>
 	);
