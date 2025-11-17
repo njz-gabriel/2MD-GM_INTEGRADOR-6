@@ -9,8 +9,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 
-import Card from "@/components/CardTimes/Card";
-import './timesid.css'
+import './timesid.css';
+
+import CardMembros from "@/components/CardTimes/Card";
 
 
 export default function Times() {
@@ -84,7 +85,7 @@ export default function Times() {
 				<div className="d-flex flex-wrap justify-content-center mt-4 gap-3">
 					<div className="col-12 text-secondary text-center fs-5">Facilitadores de time</div>
 					{
-						ft.map((m) => <Card key={m.id} pessoa={m} />)
+						ft.map((m) => <CardMembros key={m.id} pessoa={m} />)
 					}
 				</div>
 
@@ -92,7 +93,7 @@ export default function Times() {
 				<div className="d-flex flex-wrap justify-content-center mt-4 gap-3">
 					<div className="col-12 text-secondary text-center fs-5">Membros de time</div>
 					{
-						mt.map((m) => <Card key={m.id} pessoa={m} />)
+						mt.map((m) => <CardMembros key={m.id} pessoa={m} />)
 					}
 				</div>
 
