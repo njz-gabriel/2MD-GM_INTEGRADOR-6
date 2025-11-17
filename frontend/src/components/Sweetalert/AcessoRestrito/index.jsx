@@ -10,6 +10,7 @@ export default function AcessoRestrito({
         title: 'Acesso negado',
         html: text,
         icon: 'error',
+        backdrop: '#0956FF',
 
         // Impedindo de ser fechado
         allowOutsideClick: false,
