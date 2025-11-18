@@ -30,5 +30,3 @@ VALUES
 (6, 'Estamparia', 'Equipe responsável por modelar chapas de aço (ou alumínio) para formar as peças da carroceria', 'bi bi-car-front'),
 (7, 'Engenharia', 'Equipe responsável por projetar, desenvolver e melhorar os veículos e os processos de produção', 'bi bi-gear-wide-connected'),
 (8, 'Polímeros', 'Equipe responsável pela engenharia de materiais e produção', 'bi bi-flask');
-
-SELECT * FROM equipes;

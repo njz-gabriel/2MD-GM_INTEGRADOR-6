@@ -70,6 +70,52 @@ class EquipesModel {
             throw error;
         }
     }
+
+    // LISTAR OS FTs DE UMA EQUIPE
+    static async listarFTs(idEquipe) {
+        try {
+            const connection = await getConnection();
+
+            try {
+                const sql = `SELECT id, nome, email, tipo, id_equipe FROM usuarios u WHERE u.id_equipe = ${idEquipe} AND u.tipo = 'ft';`;
+
+                const [membros] = await connection.query(sql);
+
+                return {
+                    membros
+                };
+            } finally {
+                connection.release();
+            }
+
+        } catch (error) {
+            console.error('Erro ao listar membros:', error);
+            throw error;
+        }
+    }
+
+    // LISTAR OS MTs DE UMA EQUIPE
+    static async listarMTs(idEquipe) {
+        try {
+            const connection = await getConnection();
+
+            try {
+                const sql = `SELECT id, nome, email, tipo, id_equipe FROM usuarios u WHERE u.id_equipe = ${idEquipe} AND tipo = 'mt';`;
+
+                const [membros] = await connection.query(sql);
+
+                return {
+                    membros
+                };
+            } finally {
+                connection.release();
+            }
+
+        } catch (error) {
+            console.error('Erro ao listar membros:', error);
+            throw error;
+        }
+    }
 }
 
 

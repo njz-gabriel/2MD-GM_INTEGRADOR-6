@@ -4,11 +4,11 @@ import path from 'path';
 
 
 class TreinamentoController {
-
+    /* Lista todos os treinamento */
     static async listarTodos(req, res) {
         try {
 
-            const resultado = await TreinamentoModel.listarTodos(); // <-- MUDANÇA AQUI
+            const resultado = await TreinamentoModel.listarTodos();
 
             res.status(200).json({
                 sucesso: true,
@@ -25,14 +25,16 @@ class TreinamentoController {
         }
     }
 
+    /* Cria um novo treinamento */
     static async criarTreinamento(req, res){
         try {
-            const { nome, descricao} = req.body;
+            const { nome, descricao, participantes} = req.body;
 
             // Preparar dados do treinamento
             const dadosTreinamento = {
                 nome: nome.trim(),
                 descricao: descricao ? descricao.trim() : '',
+                participantes: participantes
             };
 
             const produtoId = await TreinamentoModel.criar(dadosTreinamento);

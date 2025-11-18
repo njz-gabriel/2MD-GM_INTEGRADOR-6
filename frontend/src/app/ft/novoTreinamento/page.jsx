@@ -7,19 +7,47 @@
 
 import { useEffect, useState } from "react"
 
+import Swal from "sweetalert2";
+
 import './novoTreinamento.css';
 
 export default function NovoTreinamento() {
-    const [mts, setMTs] = useState([
-        { id: 0, imagem: null, nome: 'João Alves', email: 'joao.alves@email.com' },
-        { id: 1, imagem: null, nome: 'Maria Antunes', email: 'maria.antunes@email.com' },
-        { id: 2, imagem: null, nome: 'João Alves', email: 'joao.alves@email.com' },
-        { id: 3, imagem: null, nome: 'Maria Antunes', email: 'maria.antunes@email.com' },
-    ])
+    // const [ft, setFT] = useState({});
+    const [mts, setMTs] = useState([]);
 
     const [nomeTreinamento, setNomeTreinamento] = useState('');
     const [descricaoTreinamento, setDescricaoTreinamento] = useState('');
     const [participantes, setParticipantes] = useState([]);
+
+    const [erro, setErro] = useState(null);
+
+    // = = = = = = = = = = = = = = = = = = =
+    /* Função para carregar os MTs da área */
+    useEffect(() => {
+        async function carregarMTs() {
+            const ft = JSON.parse(sessionStorage.getItem('usuario'))
+            console.log(ft.id_equipe);
+            
+
+            try {
+                const res = await fetch(`http://localhost:3000/api/equipes/${ft.id_equipe}/mt`);
+                const data = await res.json();
+
+                if (data.sucesso) {
+                    console.log(data);
+
+                    setMTs(data.dados);
+                }
+                else {
+                    console.log(data.mensagem);
+                }
+            } catch (err) {
+                console.error("Erro ao carregar membros:", err);
+            }
+        }
+
+        carregarMTs()
+    }, [])
 
     /* Função para adicionar ou remover participante */
     function adicionarParticipante(id) {
@@ -41,7 +69,61 @@ export default function NovoTreinamento() {
         }
     }
 
+    /* Função para cadastrar o treinamento */
+    function CadastrarTreinamento(e) {
+        e.preventDefault();
 
+        setErro(null)
+
+        const treinamento = {
+            nome: nomeTreinamento,
+            descricao: descricaoTreinamento,
+            participantes: participantes
+        }
+
+        fetch('http://127.0.0.1:3000/api/treinamentos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(treinamento)
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            if (data.sucesso) {
+                // Alerta de usuário cadastrado
+                Swal.fire({
+                    title: "Treinamento cadastrado",
+                    html: `
+                            <p class="mb-2">Treinamento criado com sucesso</p>
+                            <div class="text-start p-3 border rounded" style="background:#f8f9fa;">
+                                <table class="table table-sm mb-0">
+                                    <tbody>
+                                        <div>
+                                            <div class="fw-bold">Nome</div>
+                                            <div>${data.dados.nome}</div>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold mt-3">Descrição</div>
+                                            <div>${data.dados.descricao}</div>
+                                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        `,
+                    icon: "success",
+                    confirmButtonText: "Fechar",
+                    confirmButtonColor: "#0956FF"
+                });
+            }
+            else {
+                setErro(data.mensagem)
+            }
+        }).catch(err => {
+            console.log(err);
+            setErro('Erro ao realizar o cadastro do treinamento, tente novamente mais tarde.')
+        })
+    }
 
 
     return <>
@@ -50,7 +132,7 @@ export default function NovoTreinamento() {
                 <h3 className="card-title text-center mb-4">Novo treinamento</h3>
 
                 {/* Formulário */}
-                <form className="col-12 d-flex flex-wrap">
+                <form className="col-12 d-flex flex-wrap" onSubmit={CadastrarTreinamento}>
                     {/* Nome e descrição */}
                     <div className="col-12 col-lg-6 pe-lg-2 d-flex flex-column justify-content-lg-between">
                         {/* Nome */}
@@ -94,32 +176,30 @@ export default function NovoTreinamento() {
                         <div className="col-12 border p-3 rounded overflow-y-scroll" style={{ height: '350px' }}>
                             {
                                 mts.map((mt) => {
-                                    return <>
-                                        <div
-                                            className={`selectParticipante form-check bordas bordaCinza py-2 ${participantes.includes(mt.id) ? "participanteSelecionado" : ""}`}
-                                            key={mt.id}
-                                        >
-                                            <input className="form-check-input d-none m-0 p-0" type="checkbox" id={mt.id}
-                                                checked={participantes.includes(mt.id)}
-                                                onChange={() => adicionarParticipante(mt.id)}
-                                            />
+                                    return <div
+                                        className={`selectParticipante form-check bordas bordaCinza py-2 ${participantes.includes(mt.id) ? "participanteSelecionado" : ""}`}
+                                        key={mt.id}
+                                    >
+                                        <input className="form-check-input d-none m-0 p-0" type="checkbox" id={mt.id}
+                                            checked={participantes.includes(mt.id)}
+                                            onChange={() => adicionarParticipante(mt.id)}
+                                        />
 
-                                            <label className="form-check-label col-12 overflow-hidden" htmlFor={mt.id}>
-                                                <div className="d-flex">
-                                                    <div>
-                                                        <img
-                                                            style={{ height: '4rem', width: '4rem' }}
-                                                            src={mt.imagem ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}
-                                                        />
-                                                    </div>
-
-                                                    <div className="ms-2">
-                                                        <div className="fw-bold">{mt.nome}</div>
-                                                        <div className="text-muted">{mt.email}</div>                                                    </div>
+                                        <label className="form-check-label col-12 overflow-hidden" htmlFor={mt.id}>
+                                            <div className="d-flex">
+                                                <div>
+                                                    <img
+                                                        style={{ height: '4rem', width: '4rem' }}
+                                                        src={mt.imagem ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}
+                                                    />
                                                 </div>
-                                            </label>
-                                        </div >
-                                    </>
+
+                                                <div className="ms-2">
+                                                    <div className="fw-bold">{mt.nome}</div>
+                                                    <div className="text-muted">{mt.email}</div>                                                    </div>
+                                            </div>
+                                        </label>
+                                    </div >
                                 })
                             }
                         </div>
@@ -132,6 +212,9 @@ export default function NovoTreinamento() {
                         </button>
                     </div>
                 </form>
+
+                {/* Erro */}
+                <div className='text-danger medium'>{erro}</div>
             </div >
         </div >
     </>

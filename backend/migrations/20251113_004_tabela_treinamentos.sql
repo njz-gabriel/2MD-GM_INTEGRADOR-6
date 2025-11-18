@@ -58,11 +58,11 @@ INSERT INTO sessoes (idTreinamento, dia) values
 -- =====================================================================================================================================
 -- Criando a tabela de participacoes
 CREATE TABLE if not exists participacoes (
-	idSessao			INT,
+	idTreinamento			INT,
     idParticipante		INT,
-    PRIMARY KEY (idSessao, idParticipante),
+    PRIMARY KEY (idTreinamento, idParticipante),
     
-    FOREIGN KEY (idSessao) REFERENCES sessoes(id) ON DELETE CASCADE,
+    FOREIGN KEY (idTreinamento) REFERENCES treinamentos(id) ON DELETE CASCADE,
     FOREIGN KEY (idParticipante) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 

@@ -69,6 +69,50 @@ class EquipesController {
             });
         }
     }
+
+    /* LISTAR FTs DE UMA EQUIPE ESPECÍFICA */
+    static async listarFTs(req, res) {
+        try {
+            const idEquipe = parseInt(req.params.id)
+
+            const resultado = await EquipesModel.listarFTs(idEquipe);
+
+            res.status(200).json({
+                sucesso: true,
+                dados: resultado.membros
+            });
+
+        } catch (error){
+            console.error('Erro ao listar os membros da equipe:', error);
+            res.status(500).json({
+                sucesso: false,
+                erro: 'Erro interno do servidor',
+                mensagem: 'Não foi possível listar os FTs da equipe'
+            });
+        }
+    }
+
+    /* LISTAR MTs DE UMA EQUIPE ESPECÍFICA */
+    static async listarMTs(req, res) {
+        try {
+            const idEquipe = parseInt(req.params.id)
+
+            const resultado = await EquipesModel.listarMTs(idEquipe);
+
+            res.status(200).json({
+                sucesso: true,
+                dados: resultado.membros
+            });
+
+        } catch (error){
+            console.error('Erro ao listar os membros da equipe:', error);
+            res.status(500).json({
+                sucesso: false,
+                erro: 'Erro interno do servidor',
+                mensagem: 'Não foi possível listar os MTs da equipe'
+            });
+        }
+    }
 }
 
 

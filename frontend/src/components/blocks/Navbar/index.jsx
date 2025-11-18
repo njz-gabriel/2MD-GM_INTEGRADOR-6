@@ -25,8 +25,9 @@ export default function Navbar() {
 
 				// Verificando se há um usuário logado
 				if (data.sucesso) {
-					console.log(data);
+					// console.log(data);
 
+					sessionStorage.setItem('usuario', JSON.stringify(data.dados))
 					setUsuario(data.dados)
 
 					setAcesso(true)
@@ -219,7 +220,7 @@ export default function Navbar() {
 
 			{/* Redirecionando o usuário */}
 			{
-				// setTimeout(() => { window.location.href = '/login' }, 3400)
+				setTimeout(() => { window.location.href = '/login' }, 3400)
 			}
 		</div>
 	);

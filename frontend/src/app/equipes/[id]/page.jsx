@@ -3,7 +3,7 @@
 /*
 	Página para listar os membros da equipe
 		• Listar os membros (OK)
-		• Ao selecionar um membro, abrir modal com os dados do funcionário 
+		• Ao selecionar um membro, abrir modal com os dados do funcionário (OK)
 */
 
 import { useState, useEffect } from "react";
@@ -85,7 +85,10 @@ export default function Times() {
 				<div className="d-flex flex-wrap justify-content-center mt-4 gap-3">
 					<div className="col-12 text-secondary text-center fs-5">Facilitadores de time</div>
 					{
-						ft.map((m) => <CardMembros key={m.id} pessoa={m} />)
+						ft.map((m, index) => <div key={m.id} className="animacao" style={{ "--i": index }} >
+							<CardMembros key={m.id} pessoa={m} />
+						</div>
+						)
 					}
 				</div>
 
@@ -93,7 +96,10 @@ export default function Times() {
 				<div className="d-flex flex-wrap justify-content-center mt-4 gap-3">
 					<div className="col-12 text-secondary text-center fs-5">Membros de time</div>
 					{
-						mt.map((m) => <CardMembros key={m.id} pessoa={m} />)
+						mt.map((m, index) => <div key={m.id} className="animacao" style={{ "--i": index }} >
+							<CardMembros pessoa={m} />
+						</div>
+						)
 					}
 				</div>
 
