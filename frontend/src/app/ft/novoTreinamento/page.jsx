@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import './novoTreinamento.css';
 
 export default function NovoTreinamento() {
-    // const [ft, setFT] = useState({});
+    const [usuario, setUsuario] = useState([]);
     const [mts, setMTs] = useState([]);
 
     const [nomeTreinamento, setNomeTreinamento] = useState('');
@@ -22,12 +22,32 @@ export default function NovoTreinamento() {
     const [erro, setErro] = useState(null);
 
     // = = = = = = = = = = = = = = = = = = =
+    /* Carregando o usuário logado */
+    useEffect(() => {
+        async function carregarUsuario() {
+            const res = await fetch('http://localhost:3000/api/auth/perfil', {
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                }
+            });
+            const data = await res.json();
+
+            // Verificando se há um usuário logado
+            if (data.sucesso) {
+                sessionStorage.setItem('usuario', JSON.stringify(data.dados));
+                setUsuario(data.dados);
+            }
+        }
+
+        carregarUsuario();
+    }, [])
+
     /* Função para carregar os MTs da área */
     useEffect(() => {
         async function carregarMTs() {
             const ft = JSON.parse(sessionStorage.getItem('usuario'))
             console.log(ft.id_equipe);
-            
+
 
             try {
                 const res = await fetch(`http://localhost:3000/api/equipes/${ft.id_equipe}/mt`);
@@ -78,7 +98,8 @@ export default function NovoTreinamento() {
         const treinamento = {
             nome: nomeTreinamento,
             descricao: descricaoTreinamento,
-            participantes: participantes
+            participantes: participantes,
+            idCriador: usuario.id
         }
 
         fetch('http://127.0.0.1:3000/api/treinamentos', {

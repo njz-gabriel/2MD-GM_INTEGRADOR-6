@@ -21,12 +21,12 @@ SHOW TABLES;
 
 INSERT INTO equipes (id,nome, descricao, icone)
 VALUES 
-(0, 'TDO - Ferramentaria', 'Equipe de desenvolvimento de ferramentas especiais', 'bi bi-tools'),
-(1, 'Pintura', 'Equipe responsavel pela pintura', 'bi bi-brush'),
-(2, 'GA - Gestão de Almoxarifado/Geral', 'Equipe responsável pela linha de montagem', 'bi bi-car-front-fill'),
-(3, 'Manutenção', 'Equipe responsável pela manutenção geral da fábrica', 'bi bi-wrench-adjustable'),
-(4, 'RH - Recursos Humanos', 'Equipe responsável por cuidar dos funcionários da empresa', 'bi bi-person-arms-up'),
-(5, 'IT - Tecnologia da Informação', 'Equipe responsável pelo suporte tecnológico a toda a empresa', 'bi bi-pc-display-horizontal'),
-(6, 'Estamparia', 'Equipe responsável por modelar chapas de aço (ou alumínio) para formar as peças da carroceria', 'bi bi-car-front'),
-(7, 'Engenharia', 'Equipe responsável por projetar, desenvolver e melhorar os veículos e os processos de produção', 'bi bi-gear-wide-connected'),
-(8, 'Polímeros', 'Equipe responsável pela engenharia de materiais e produção', 'bi bi-flask');
+(1, 'TDO - Ferramentaria', 'Equipe de desenvolvimento de ferramentas especiais', 'bi bi-tools'),
+(2, 'Pintura', 'Equipe responsavel pela pintura', 'bi bi-brush'),
+(3, 'GA - Gestão de Almoxarifado/Geral', 'Equipe responsável pela linha de montagem', 'bi bi-car-front-fill'),
+(4, 'Manutenção', 'Equipe responsável pela manutenção geral da fábrica', 'bi bi-wrench-adjustable'),
+(5, 'RH - Recursos Humanos', 'Equipe responsável por cuidar dos funcionários da empresa', 'bi bi-person-arms-up'),
+(6, 'IT - Tecnologia da Informação', 'Equipe responsável pelo suporte tecnológico a toda a empresa', 'bi bi-pc-display-horizontal'),
+(7, 'Estamparia', 'Equipe responsável por modelar chapas de aço (ou alumínio) para formar as peças da carroceria', 'bi bi-car-front'),
+(8, 'Engenharia', 'Equipe responsável por projetar, desenvolver e melhorar os veículos e os processos de produção', 'bi bi-gear-wide-connected'),
+(9, 'Polímeros', 'Equipe responsável pela engenharia de materiais e produção', 'bi bi-flask');

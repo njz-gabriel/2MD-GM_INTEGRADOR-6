@@ -25,6 +25,7 @@ CREATE TABLE if not exists treinamentos (
 
 -- Inserindo dados de teste na tabela  de treinamentos
 -- Criando com datas passadas
+/*
 INSERT INTO treinamentos (nome, descricao, estado, data_criacao) values 
 ('Treinamento 1', 'Treinamento de como passar pretinho no pneu', 'Concluido', '2024-10-10 12:00:00'),				-- Há 1 ano
 ('Treinamento 2', 'Treinamento de como usar um paquimetro', 'Cancelado', '2025-05-10 12:00:00'),					-- Há meses
@@ -35,7 +36,7 @@ INSERT INTO treinamentos (nome, descricao, estado, data_criacao) values
 -- Criando 1 com a data atual
 INSERT INTO treinamentos (nome, descricao) values
 ('Treinamento 6', 'Treinamento de como subir em uma escada pela parte de cima');
-
+*/
 -- =====================================================================================================================================
 
 -- Criando a tabela de sessoes de treinamento
@@ -59,7 +60,7 @@ INSERT INTO sessoes (idTreinamento, dia) values
 -- Criando a tabela de participacoes
 CREATE TABLE if not exists participacoes (
 	idTreinamento			INT,
-    idParticipante		INT,
+    idParticipante			INT,
     PRIMARY KEY (idTreinamento, idParticipante),
     
     FOREIGN KEY (idTreinamento) REFERENCES treinamentos(id) ON DELETE CASCADE,
@@ -68,6 +69,7 @@ CREATE TABLE if not exists participacoes (
 
 -- =====================================================================================================================================
 -- Criando a tabela de certificados
+/*
 CREATE TABLE if not exists certificados (
 	idUsuario		INT ,
     idTreinamento	INT,
@@ -76,8 +78,6 @@ CREATE TABLE if not exists certificados (
     FOREIGN KEY (idUsuario) REFERENCES usuarios(id) ON DELETE CASCADE,
     FOREIGN KEY (idTreinamento) REFERENCES treinamentos(id) ON DELETE CASCADE
 );
+*/
 
 -- =====================================================================================================================================
-
-select * from treinamentos;
-select * from sessoes;

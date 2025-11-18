@@ -10,54 +10,85 @@ import EstadosTreinamentos from "@/components/Graficos/EstadosTreinamentos";
 import TreinamentosRealizados from "@/components/Graficos/TreinamentosRealizados";
 import TreinamentosOfertados from "@/components/Graficos/TreinamentosOfertados";
 
-import StackedBarChart from "@/components/Graficos/grafico3";
-import Grafico1 from "@/components/Graficos/grafico1";
 
 export default function Dashboard() {
 	const [usuario, setUsuario] = useState([]);
-	const [treinamentosRealizados, setTreinamentosRealizados] = useState([]);
 	const [treinamentosOferecidos, setTreinamentosOferecidos] = useState([]);
+	const [treinamentosRealizados, setTreinamentosRealizados] = useState([]);
 
 
 	/* Carregando o usuário logado */
 	useEffect(() => {
-		// /perfil
-
-		const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
-
-		setUsuario(usuarioLogado?.usuario)
-	}, [])
-
-	/* Carregando os treinamentos do usuario*/
-	useEffect(() => {
-		try {
-			async function carregarTreinamentos() {
-				const res = await fetch('http://localhost:3000/api/treinamentos');
-				const data = await res.json();
-
-				if (data.sucesso) {
-					console.log(data.dados);
-
-					setTreinamentosRealizados(data.dados);
+		async function carregarUsuario() {
+			const res = await fetch('http://localhost:3000/api/auth/perfil', {
+				headers: {
+					'Authorization': 'Bearer ' + sessionStorage.getItem('token')
 				}
-				else {
-					console.log(data.mensagem);
-				}
+			});
+			const data = await res.json();
+
+			// Verificando se há um usuário logado
+			if (data.sucesso) {
+				sessionStorage.setItem('usuario', JSON.stringify(data.dados));
+				setUsuario(data.dados);
 			}
+		}
 
-			carregarTreinamentos()
-		}
-		catch {
-			/* Erro caso a API esteja desligada */
-		}
+		carregarUsuario();
 	}, [])
 
-	/* Função para abrir um modal */
-	function exibirModal(idModal) {
-		const modalHTML = document.getElementById(idModal);
-		const modal = new bootstrap.Modal(modalHTML);
-		modal.show();
-	}
+	/* Carregando os treinamentos oferecidos pelo FT*/
+	useEffect(() => {
+		if (usuario.id) {
+			try {
+				async function carregarTreinamentos() {
+					const res = await fetch(`http://localhost:3000/api/treinamentos/criador/${usuario.id}`);
+					const data = await res.json();
+
+					if (data.sucesso) {
+						console.log(data.dados);
+
+						setTreinamentosOferecidos(data.dados);
+					}
+					else {
+						console.log(data.mensagem);
+					}
+				}
+
+				carregarTreinamentos()
+			}
+			catch {
+				/* Erro caso a API esteja desligada */
+			}
+		}
+	}, [usuario])
+
+	/* Carregando os treinamentos realizados pelo FT*/
+	useEffect(() => {
+		if (usuario.id) {
+			try {
+				async function carregarTreinamentos() {
+					const res = await fetch(`http://localhost:3000/api/treinamentos/${usuario.id}`);
+					const data = await res.json();
+
+					if (data.sucesso) {
+						console.log(data.dados);
+
+						setTreinamentosRealizados(data.dados);
+					}
+					else {
+						console.log(data.mensagem);
+					}
+				}
+
+				carregarTreinamentos()
+			}
+			catch {
+				/* Erro caso a API esteja desligada */
+			}
+		}
+	}, [usuario])
+
 
 	/* Função para cadastrar um novo treinamento */
 	function criarTreinamento() {
@@ -90,7 +121,7 @@ export default function Dashboard() {
 				{/* Titulo da página*/}
 				<div className="d-flex flex-column justify-content-between mb-3">
 					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Administração</h1></div>
-					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario?.nome}</p>
+					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo(a), {usuario?.nome}</p>
 				</div>
 
 				{/* Lista e ações */}
@@ -109,7 +140,7 @@ export default function Dashboard() {
 
 						<div className="col-12 h-50 pt-2">
 							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
-								<EstadosTreinamentos treinamentos={treinamentosRealizados}/>
+								<EstadosTreinamentos treinamentos={treinamentosRealizados} />
 							</div>
 						</div>
 
@@ -146,19 +177,3 @@ export default function Dashboard() {
 		</>
 	);
 }
-
-
-/*
-{ id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 5, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 6, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 7, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 8, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 9, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 10, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 11, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 12, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() }
-*/

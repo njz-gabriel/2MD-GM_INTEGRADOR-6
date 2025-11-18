@@ -4,7 +4,7 @@ import path from 'path';
 
 
 class TreinamentoController {
-    /* Lista todos os treinamento */
+    /* LISTA TODOS OS TREINAMENTOS */
     static async listarTodos(req, res) {
         try {
 
@@ -25,16 +25,61 @@ class TreinamentoController {
         }
     }
 
-    /* Cria um novo treinamento */
+    /* LISTA TODOS OS TREINAMENTOS DE UM PARTICIPANTE  */
+    static async listarTreinamentosParticipante(req, res) {
+        try {
+            const id = parseInt(req.params.id);
+
+            const resultado = await TreinamentoModel.listarTreinamentosParticipante(id);
+
+            res.status(200).json({
+                sucesso: true,
+                dados: resultado.treinamentos
+            });
+            
+        } catch (error) {
+            console.error('Erro ao listar treinamentos participados:', error);
+            res.status(500).json({
+                sucesso: false,
+                erro: 'Erro interno do servidor',
+                mensagem: 'Não foi possível listar os treinamentos participados'
+            });
+        }
+    }
+
+    /* LISTA TODOS OS TREINAMENTOS OFERECIDOS  */
+    static async listarTreinamentosOferecidos(req, res) {
+        try {
+            const id = parseInt(req.params.id);
+
+            const resultado = await TreinamentoModel.listarTreinamentosOferecidos(id);
+
+            res.status(200).json({
+                sucesso: true,
+                dados: resultado.treinamentos
+            });
+            
+        } catch (error) {
+            console.error('Erro ao listar treinamentos oferecidos:', error);
+            res.status(500).json({
+                sucesso: false,
+                erro: 'Erro interno do servidor',
+                mensagem: 'Não foi possível listar os treinamentos oferecidos'
+            });
+        }
+    }
+
+    /* CRIA UM NOVO TREINAMENTO */
     static async criarTreinamento(req, res){
         try {
-            const { nome, descricao, participantes} = req.body;
+            const { nome, descricao, participantes, idCriador} = req.body;
 
             // Preparar dados do treinamento
             const dadosTreinamento = {
                 nome: nome.trim(),
                 descricao: descricao ? descricao.trim() : '',
-                participantes: participantes
+                participantes: participantes,
+                idCriador: idCriador
             };
 
             const produtoId = await TreinamentoModel.criar(dadosTreinamento);

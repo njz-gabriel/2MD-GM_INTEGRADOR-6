@@ -6,8 +6,22 @@ export default function AcoesRapidas() {
     const [usuario, setUsuario] = useState([]);
 
     useEffect(() => {
-        const user = JSON.parse(sessionStorage.getItem('usuario'));
-        setUsuario(user)
+        async function carregarUsuario() {
+            const res = await fetch('http://localhost:3000/api/auth/perfil', {
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                }
+            });
+            const data = await res.json();
+
+            // Verificando se há um usuário logado
+            if (data.sucesso) {
+                sessionStorage.setItem('usuario', JSON.stringify(data.dados));
+                setUsuario(data.dados);
+            }
+        }
+
+        carregarUsuario();
     }, [])
 
     return <>
@@ -28,7 +42,7 @@ export default function AcoesRapidas() {
                     <button className="btn btn-White border text-start d-flex align-items-center">
                         <i className="fas fa-user-plus me-2 text-primary text-center" style={{ width: '1.5rem' }} /> Ver treinamentos
                     </button>
-                    <a className="btn btn-White border text-start d-flex align-items-center" href={`/equipes/${usuario.id_equipe}`}>
+                    <a className="btn btn-White border text-start d-flex align-items-center" href={`/equipes/${usuario?.id_equipe}`}>
                         <i className="fas fa-users me-2 text-primary text-center" style={{ width: '1.5rem' }} /> Ver equipe
                     </a>
                     <button className="btn btn-White border text-start d-flex align-items-center">
