@@ -37,7 +37,7 @@ export default function Dashboard() {
 		carregarUsuario();
 	}, [])
 
-	/* Carregando os treinamentos oferecidos pelo FT*/
+	/* Carregando os treinamentos oferecidos pelo usuário*/
 	useEffect(() => {
 		if (usuario.id) {
 			try {
@@ -63,7 +63,7 @@ export default function Dashboard() {
 		}
 	}, [usuario])
 
-	/* Carregando os treinamentos realizados pelo FT*/
+	/* Carregando os treinamentos realizados pelo usuário*/
 	useEffect(() => {
 		if (usuario.id) {
 			try {
@@ -104,7 +104,7 @@ export default function Dashboard() {
 
 					{/* Listagem de treinamentos */}
 					<div className="col-lg-7">
-						<TreinamentosLista treinamentosRealizados={treinamentosRealizados ?? []} treinamentosOfertados={treinamentosOferecidos ?? []} />
+						<TreinamentosLista treinamentosRealizados={treinamentosRealizados ?? []} treinamentosOfertados={treinamentosOferecidos ?? []} tipoUsuario={usuario.tipo}/>
 					</div>
 
 					{/* Ações rápidas e gráfico de pizza */}

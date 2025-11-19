@@ -6,7 +6,8 @@ import './trLista.css';
 
 export default function TreinamentosLista({
     treinamentosRealizados,
-    treinamentosOfertados
+    treinamentosOfertados,
+    tipoUsuario
 }) {
     const [filtroRO, setFiltroRO] = useState('Realizados');
     const [filtro, setFiltro] = useState('');
@@ -58,7 +59,13 @@ export default function TreinamentosLista({
                     </button>
 
                     {
-                        treinamentosOfertados ? (
+                        tipoUsuario === 'mt' ? (
+                            <button
+                                className={`col-12 col-sm-6 col-md-3 btn border rounded-0 bg-secondary bg-opacity-50`}
+                                disabled
+                            >Ofertados
+                            </button>
+                        ) : (
                             <button
                                 className={`col-12 col-sm-6 col-md-3 btn border rounded-0 btn-filtro ${filtroRO === 'Ofertados' ? 'btn-ativo' : ''}`}
                                 onClick={() => {
@@ -67,12 +74,6 @@ export default function TreinamentosLista({
                                     setFiltro('');
                                     setTrExibir(treinamentosOfertados);
                                 }}
-                            >Ofertados
-                            </button>
-                        ) : (
-                            <button
-                                className={`col-12 col-sm-6 col-md-3 btn border rounded-0 bg-secondary bg-opacity-50`}
-                                disabled
                             >Ofertados
                             </button>
                         )
@@ -117,13 +118,10 @@ export default function TreinamentosLista({
                     }
                     style={{ height: '500px' }}
                 >
-                    {treinamentos.length > 0 ? (
+                    {trExibir.length > 0 ? (
                         trExibir.map(tr => <TreinamentosItem tr={tr} key={tr.id} />)
                     ) : (
                         <div className="h-100 gap-3 d-flex flex-column justify-content-center align-items-center">
-                            {/* <div className="spinner-border text-secondary" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div> */}
                             <p className="text-muted">Sem treinamentos</p>
                         </div>
                     )}
