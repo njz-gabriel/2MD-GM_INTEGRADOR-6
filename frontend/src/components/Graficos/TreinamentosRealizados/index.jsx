@@ -21,6 +21,7 @@ ChartJS.register(
 );
 
 export default function TreinamentosRealizados({treinamentosRealizados}) {
+  // Dados do grádico
   const data = {
     labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
     datasets: [
@@ -32,6 +33,7 @@ export default function TreinamentosRealizados({treinamentosRealizados}) {
     ],
   };
 
+  // Configurações do gráfico
   const options = {
     responsive: true,
     plugins: {
@@ -40,7 +42,7 @@ export default function TreinamentosRealizados({treinamentosRealizados}) {
     },
   };
 
-  return <div className="d-flex flex-column justify-content-between">
+  return <div className="col-12 d-flex flex-column justify-content-between">
     {/* Titulo */}
     <div className="card-header bg-white border-0 px-0 mb-3">
       <div className="d-flex flex-column">

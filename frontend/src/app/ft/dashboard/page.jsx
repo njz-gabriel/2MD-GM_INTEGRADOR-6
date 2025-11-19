@@ -90,31 +90,6 @@ export default function Dashboard() {
 	}, [usuario])
 
 
-	/* Função para cadastrar um novo treinamento */
-	function criarTreinamento() {
-		// Criando o objeto do treinamento
-		const dadosTreinamento = {
-			nome: "sadasd",
-			descricao: "dsad"
-		}
-
-		// Fazendo a requisição para criar o treinamento
-		fetch('http://localhost:3000/api/treinamentos', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(dadosTreinamento)
-		}).then(res => {
-			res.json()
-		}).then(data => {
-			if (data.sucesso) {
-
-			}
-			else {
-				console.log(data.mensagem);
-			}
-		})
-	};
-
 	return (
 		<>
 			<div className="container py-4">
@@ -129,15 +104,17 @@ export default function Dashboard() {
 
 					{/* Listagem de treinamentos */}
 					<div className="col-lg-7">
-						<TreinamentosLista treinamentos={treinamentosRealizados} />
+						<TreinamentosLista treinamentosRealizados={treinamentosRealizados ?? []} treinamentosOfertados={treinamentosOferecidos ?? []} />
 					</div>
 
+					{/* Ações rápidas e gráfico de pizza */}
 					<div className="col-lg-5">
+						{/* Ações Rápidas */}
 						<div className="col-12 h-50 pb-2">
-							{/* Ações Rápidas */}
 							< AcoesRapidas />
 						</div>
 
+						{/* Gráfico de pizza */}
 						<div className="col-12 h-50 pt-2">
 							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
 								<EstadosTreinamentos treinamentos={treinamentosRealizados} />
@@ -148,32 +125,32 @@ export default function Dashboard() {
 
 					<div className="col-12 d-flex flex-wrap">
 						{/* Grafico de treinamento realizado*/}
-						<div className="col-md-6 pt-2 pe-md-2">
+						<div className="col-12 col-md-6 pt-2 pe-md-2">
 							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
 								<TreinamentosRealizados />
 							</div>
 						</div>
 
 						{/* Grafico de treinamento ofertados*/}
-						<div className="col-md-6 pt-2 ps-md-2">
+						<div className="col-12 col-md-6 pt-2 ps-md-2">
 							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
 								<TreinamentosOfertados />
 							</div>
 						</div>
 					</div>
-
-					{/* // TESTANDO GRÁFICOS = = = = = = = = = = = = = = = = = = = = */}
-					{/* <div className="col-lg-6">
-							<div className="col-12 bg-white pe-2 rounded shadow-sm">
-								<Grafico1 />
-							</div>
-						</div> */}
-
-					{/* <StackedBarChart /> */}
-					{/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */}
-
 				</div>
 			</div>
 		</>
 	);
 }
+
+
+{/* // TESTANDO GRÁFICOS = = = = = = = = = = = = = = = = = = = = */ }
+{/* <div className="col-lg-6">
+							<div className="col-12 bg-white pe-2 rounded shadow-sm">
+								<Grafico1 />
+							</div>
+						</div> */}
+
+{/* <StackedBarChart /> */ }
+{/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */ }

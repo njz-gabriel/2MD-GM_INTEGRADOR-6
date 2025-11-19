@@ -220,7 +220,7 @@ export default function Navbar() {
 
 			{/* Redirecionando o usuário */}
 			{
-				setTimeout(() => { window.location.href = '/login' }, 3400)
+				// setTimeout(() => { window.location.href = '/login' }, 3400)
 			}
 		</div>
 	);

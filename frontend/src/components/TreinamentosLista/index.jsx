@@ -4,10 +4,17 @@ import { useState } from "react";
 import TreinamentosItem from "./TreinamentoItem";
 import './trLista.css';
 
-export default function TreinamentosLista({ treinamentos }) {
+export default function TreinamentosLista({
+    treinamentosRealizados,
+    treinamentosOfertados
+}) {
+    const [filtroRO, setFiltroRO] = useState('Realizados');
     const [filtro, setFiltro] = useState('');
+    const [treinamentos, setTreinamentos] = useState(treinamentosRealizados ?? []);
+    const [trExibir, setTrExibir] = useState(treinamentosRealizados ?? []);
 
-    // Objeto para as cores do estado
+
+    /* Objeto para as cores do estado */
     const Status = {
         "Pendente": ["primary", "fa-question-circle"],
         "Em andamento": ["warning", "fa-cogs"],
@@ -15,17 +22,57 @@ export default function TreinamentosLista({ treinamentos }) {
         "Cancelado": ["danger", "fa-xmark"],
     };
 
-    // Função de filtragem
-    const trExibir = filtro
-        ? treinamentos.filter(tr => tr.estado === filtro)
-        : treinamentos;
+    /* Função para filtrar treinamentos por estado */
+    function FiltrarTreinamentos(estado) {
+        estado
+            ? setTrExibir(treinamentos.filter(tr => tr.estado === estado))
+            : setTrExibir(treinamentos);
+    }
+
 
     return (
         <div className="col-12">
             <div className="col-12 card border-0 shadow-sm p-3">
+
                 {/* Título */}
-                <div className="card-header bg-white border-0 px-0">
-                    <h5 className="mb-0 fs-5">Treinamentos</h5>
+                <div className="card-header bg-white border-0 px-0 d-flex flex-wrap">
+                    <div className='col-12 col-md-6'>
+                        <h5 className="mb-0 fs-5">Treinamentos</h5>
+                    </div>
+
+                    {/* Botões de Realizado e Ofertados */}
+                    <button
+                        className={`col-12 col-sm-6 col-md-3 btn border rounded-0 btn-filtro ${filtroRO === 'Realizados' ? 'btn-ativo' : ''}`}
+                        onClick={() => {
+                            setTreinamentos(treinamentosRealizados);
+                            setFiltroRO('Realizados');
+                            setFiltro('');
+                            setTrExibir(treinamentosRealizados)
+                        }}
+                    >Realizados
+                    </button>
+
+                    {
+                        treinamentosOfertados ? (
+                            <button
+                                className={`col-12 col-sm-6 col-md-3 btn border rounded-0 btn-filtro ${filtroRO === 'Ofertados' ? 'btn-ativo' : ''}`}
+                                onClick={() => {
+                                    setTreinamentos(treinamentosOfertados);
+                                    setFiltroRO('Ofertados');
+                                    setFiltro('');
+                                    setTrExibir(treinamentosOfertados);
+                                }}
+                            >Ofertados
+                            </button>
+                        ) : (
+                            <button
+                                className={`col-12 col-sm-6 col-md-3 btn border rounded-0 bg-secondary bg-opacity-50`}
+                                disabled
+                            >Ofertados
+                            </button>
+                        )
+                    }
+
                 </div>
 
                 {/* Botões de filtro */}
@@ -44,7 +91,11 @@ export default function TreinamentosLista({ treinamentos }) {
                             <button
                                 key={estado}
                                 className={classes + ' ' + classeAtivo}
-                                onClick={() => setFiltro(ativo ? '' : estado)}
+                                onClick={() => {
+                                    const novoEstado = ativo ? '' : estado;
+                                    setFiltro(novoEstado);
+                                    FiltrarTreinamentos(novoEstado);
+                                }}
                                 style={{ cursor: 'pointer' }}
                             >
                                 {estado}
@@ -64,7 +115,12 @@ export default function TreinamentosLista({ treinamentos }) {
                     {treinamentos.length > 0 ? (
                         trExibir.map(tr => <TreinamentosItem tr={tr} key={tr.id} />)
                     ) : (
-                        <p className="text-muted">Carregando atividades...</p>
+                        <div className="h-100 gap-3 d-flex flex-column justify-content-center align-items-center">
+                            <div className="spinner-border text-secondary" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                            <p className="text-muted">Carregando treinamentos</p>
+                        </div>
                     )}
                 </div>
 
@@ -93,6 +149,6 @@ export default function TreinamentosLista({ treinamentos }) {
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 }
