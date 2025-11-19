@@ -23,22 +23,9 @@ CREATE TABLE if not exists treinamentos (
     FOREIGN KEY (idCriador) REFERENCES usuarios(id) ON DELETE SET NULL
 );
 
--- Inserindo dados de teste na tabela  de treinamentos
--- Criando com datas passadas
-/*
-INSERT INTO treinamentos (nome, descricao, estado, data_criacao) values 
-('Treinamento 1', 'Treinamento de como passar pretinho no pneu', 'Concluido', '2024-10-10 12:00:00'),				-- Há 1 ano
-('Treinamento 2', 'Treinamento de como usar um paquimetro', 'Cancelado', '2025-05-10 12:00:00'),					-- Há meses
-('Treinamento 3', 'Treinamento de como usar uma furadeira no chão', 'Em andamento', '2025-11-10 12:00:00'),		-- Há dias
-('Treinamento 4', 'Treinamento de como usar uma furadeira no chão', 'Pendente', '2025-11-13 00:00:00'),		-- Há horas
-('Treinamento 5', 'Treinamento de como usar uma furadeira no chão', 'Pendente', '2025-11-13 08:20:00');		-- Há minutos
-
--- Criando 1 com a data atual
-INSERT INTO treinamentos (nome, descricao) values
-('Treinamento 6', 'Treinamento de como subir em uma escada pela parte de cima');
-*/
 -- =====================================================================================================================================
 
+/*
 -- Criando a tabela de sessoes de treinamento
 CREATE TABLE if not exists sessoes (
 	id					INT PRIMARY KEY AUTO_INCREMENT,
@@ -49,12 +36,14 @@ CREATE TABLE if not exists sessoes (
 );
 
 -- Inserindo dados de teste na tabela  de treinamentos
+
 INSERT INTO sessoes (idTreinamento, dia) values 
 (2, '2025-11-20 12:00:00'),
 (3, '2025-11-30 10:30:00'),
 (3, '2025-12-10 14:30:00'),
 (4, '2025-12-01 13:00:00')
 ;
+*/
 
 -- =====================================================================================================================================
 -- Criando a tabela de participacoes
