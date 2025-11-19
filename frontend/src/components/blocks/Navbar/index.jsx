@@ -138,7 +138,7 @@ export default function Navbar() {
 					Navegação
 				</button>
 
-				<ul className="dropdown-menu col-12">
+				<ul className="dropdown-menu">
 					{/* Home */}
 					<div className="navbarItem_Cel d-flex align-items-center px-3 border-bottom">
 						<a href="" className="navbarLink_Cel rounded d-flex align-items-center justify-content-center">
@@ -204,7 +204,6 @@ export default function Navbar() {
 			</div>
 
 			{/* Tema e Logo da GM */}
-			{/* d-none d-lg-block */}
 			<div className='d-flex flex-lg-column'>
 				{/* Tema */}
 				<div className="position-relative theme-wrapper me-2 me-lg-0 mb-lg-2 col-lg-12 d-flex justify-content-center align-items-center">
