@@ -99,3 +99,34 @@
     color: white;
     background-color: var(--text);
 }
+
+
+
+.theme-wrapper {
+    display: inline-block;
+}
+
+.theme-popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 3.2rem; /* aparece ao lado */
+    background: white;
+    z-index: 50;
+    white-space: nowrap;
+    border-radius: 0.5rem;
+}
+
+.theme-wrapper:hover .theme-popup {
+    display: flex; /* mostra ao passar o mouse */
+    gap: 0.5rem;
+}
+
+.theme-option {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.theme-option:hover {
+    background-color: #e9ecef;
+}
