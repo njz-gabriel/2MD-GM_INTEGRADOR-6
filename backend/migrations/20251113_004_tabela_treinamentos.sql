@@ -40,6 +40,7 @@ INSERT INTO treinamentos (nome, descricao) values
 -- =====================================================================================================================================
 
 -- Criando a tabela de sessoes de treinamento
+/*
 CREATE TABLE if not exists sessoes (
 	id					INT PRIMARY KEY AUTO_INCREMENT,
     idTreinamento		INT,
@@ -55,7 +56,7 @@ INSERT INTO sessoes (idTreinamento, dia) values
 (3, '2025-12-10 14:30:00'),
 (4, '2025-12-01 13:00:00')
 ;
-
+*/
 -- =====================================================================================================================================
 -- Criando a tabela de participacoes
 CREATE TABLE if not exists participacoes (
