@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TreinamentosItem from "./TreinamentoItem";
 import './trLista.css';
 
@@ -10,8 +10,13 @@ export default function TreinamentosLista({
 }) {
     const [filtroRO, setFiltroRO] = useState('Realizados');
     const [filtro, setFiltro] = useState('');
-    const [treinamentos, setTreinamentos] = useState(treinamentosRealizados ?? []);
-    const [trExibir, setTrExibir] = useState(treinamentosRealizados ?? []);
+    const [treinamentos, setTreinamentos] = useState([]);
+    const [trExibir, setTrExibir] = useState([]);
+
+    useEffect(() => {
+        setTreinamentos(treinamentosRealizados)
+        setTrExibir(treinamentosRealizados)
+    }, [treinamentosRealizados])
 
 
     /* Objeto para as cores do estado */
@@ -116,10 +121,10 @@ export default function TreinamentosLista({
                         trExibir.map(tr => <TreinamentosItem tr={tr} key={tr.id} />)
                     ) : (
                         <div className="h-100 gap-3 d-flex flex-column justify-content-center align-items-center">
-                            <div className="spinner-border text-secondary" role="status">
+                            {/* <div className="spinner-border text-secondary" role="status">
                                 <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <p className="text-muted">Carregando treinamentos</p>
+                            </div> */}
+                            <p className="text-muted">Sem treinamentos</p>
                         </div>
                     )}
                 </div>
