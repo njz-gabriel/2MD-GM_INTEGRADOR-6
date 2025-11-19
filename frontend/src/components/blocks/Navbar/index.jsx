@@ -51,13 +51,13 @@ export default function Navbar() {
 		return <>
 		</>;
 	}
+	// NAVBAR
 	else if (acesso) return (
-
-		<nav className="z-3 d-flex flex-row flex-lg-column align-items-center shadow bg-white border rounded m-lg-3 py-3 me-lg-0">
-			{/* Logo da GM */}
+		<nav className="z-3 d-flex flex-row flex-lg-column align-items-center shadow bg-white border rounded m-lg-3 py-3 px-2 px-lg-0 me-lg-0">
+			{/* Foto de perfil */}
 			<div className="navbar__item d-flex align-items-center justify-content-center">
 				<a href="/perfil" className="navbar__link rounded d-flex align-items-center justify-content-center">
-					<div className='d-none d-lg-block rounded overflow-hidden' style={{ width: '3.75rem', border: '0.22rem black solid' }}>
+					<div className='rounded overflow-hidden' style={{ width: '3.75rem', border: '0.22rem black solid' }}>
 						<img src={usuario.imagem ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} className='imgCompleta' />
 					</div>
 					<span className='rounded fw-bold d-none d-lg-block bg-black'>Perfil</span>
@@ -65,7 +65,7 @@ export default function Navbar() {
 			</div>
 
 			{/* Navbar - Tablet e Desktop */}
-			<div className="navbar__menu flex-grow-1 d-none d-md-flex flex-lg-column justify-content-center flex-wrap row-gap-2 p-3">
+			<div className="navbar__menu flex-grow-1 d-none d-sm-flex flex-lg-column justify-content-center flex-wrap row-gap-2 p-3">
 				{/* Home */}
 				<div className="navbar__item d-flex align-items-center justify-content-center">
 					<a href={`/${usuario.tipo}/dashboard`} className="navbar__link rounded d-flex align-items-center justify-content-center">
@@ -118,7 +118,7 @@ export default function Navbar() {
 				</div>
 
 				{/* Configurações */}
-				<div className="navbar__item d-flex aling-item-center justify-content-center">
+				{/* <div className="navbar__item d-flex aling-item-center justify-content-center">
 					<a href="#" className="navbar__link rounded d-flex align-items-center justify-content-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-gear" viewBox="0 0 16 16">
 							<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
@@ -126,11 +126,11 @@ export default function Navbar() {
 						</svg>
 						<span className='rounded fw-bold d-none d-lg-block'>Configurações</span>
 					</a>
-				</div>
+				</div> */}
 			</div>
 
-			{/* Celular */}
-			<div className="col-12 d-sm-none btn-group dropup">
+			{/* Dropup - Celular */}
+			<div className="flex-grow-1 d-sm-none btn-group dropup">
 				<button
 					type="button" className="btn btn-secondary dropdown-toggle mx-3"
 					data-bs-toggle="dropdown" aria-expanded="false"
@@ -203,8 +203,38 @@ export default function Navbar() {
 				</ul>
 			</div>
 
-			{/* Logo da GM */}
-			<div className='d-none d-lg-block'>
+			{/* Tema e Logo da GM */}
+			{/* d-none d-lg-block */}
+			<div className='d-flex flex-lg-column'>
+				{/* Tema */}
+				<div className="position-relative theme-wrapper me-2 me-lg-0 mb-lg-2 col-lg-12 d-flex justify-content-center align-items-center">
+
+					{/* Botão para selecionar o tema */}
+					<div className="bordas bordaCinza rounded-circle d-flex align-items-center justify-content-center theme-trigger"
+						style={{ width: '2.5rem', height: '2.5rem', cursor: "pointer" }}
+					>
+						<i className="bi bi-palette fs-5"></i>
+					</div>
+
+					{/* Div flutuante com as opções */}
+					<div className="theme-popup shadow p-2 rounded bordas bordaCinza">
+
+						<div className="rounded-circle d-flex align-items-center justify-content-center me-2 theme-option"
+							style={{ width: '2.5rem', height: '2.5rem' }}
+						>
+							<i className="bi bi-sun fs-5"></i>
+						</div>
+
+						<div className="rounded-circle d-flex align-items-center justify-content-center theme-option"
+							style={{ width: '2.5rem', height: '2.5rem' }}
+						>
+							<i className="bi bi-moon fs-5"></i>
+						</div>
+
+					</div>
+				</div>
+
+
 				<LogoGM tamanho={55} cor={'black'} />
 			</div>
 		</nav>
@@ -220,7 +250,7 @@ export default function Navbar() {
 
 			{/* Redirecionando o usuário */}
 			{
-				setTimeout(() => { window.location.href = '/login' }, 3400)
+				// setTimeout(() => { window.location.href = '/login' }, 3400)
 			}
 		</div>
 	);

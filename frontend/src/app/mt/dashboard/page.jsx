@@ -3,139 +3,125 @@
 import { useState, useEffect } from "react";
 
 import TreinamentosLista from "@/components/TreinamentosLista";
-import AcoesRapidas from "@/components/ft/AcoesRapidas";
-import Grafico1 from "@/components/Graficos/grafico1";
-import BarChart from "@/components/Graficos/TreinamentosRealizados";
-import StackedBarChart from "@/components/Graficos/grafico3";
+
+// Gráficos
+import EstadosTreinamentos from "@/components/Graficos/EstadosTreinamentos";
+import TreinamentosRealizados from "@/components/Graficos/TreinamentosRealizados";
+import TreinamentosOfertados from "@/components/Graficos/TreinamentosOfertados";
 
 export default function Dashboard() {
-	const [treinamentos, setTreinamentos] = useState([]);
-
 	const [usuario, setUsuario] = useState([]);
+	const [treinamentosOferecidos, setTreinamentosOferecidos] = useState([]);
+	const [treinamentosRealizados, setTreinamentosRealizados] = useState([]);
 
 	/* Carregando o usuário logado */
 	useEffect(() => {
-		// /perfil
-
-		const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
-
-		// Se não houver um usuário logado ou se ele não for um admin
-		if (!usuarioLogado || usuarioLogado.usuario.tipo != 'admin') {
-			alert('NÃO HÁ UM ADMIN LOGADO')
-		}
-
-		setUsuario(usuarioLogado?.usuario)
-	}, [])
-
-	/* Carregando os treinamentos */
-	useEffect(() => {
-		try {
-			async function carregarTreinamentos() {
-				const res = await fetch('http://localhost:3000/api/treinamentos');
-				const data = await res.json();
-
-				if (data.sucesso) {
-					console.log(data.dados);
-
-					setTreinamentos(data.dados);
+		async function carregarUsuario() {
+			const res = await fetch('http://localhost:3000/api/auth/perfil', {
+				headers: {
+					'Authorization': 'Bearer ' + sessionStorage.getItem('token')
 				}
-				else {
-					console.log(data.mensagem);
-				}
-			}
+			});
+			const data = await res.json();
 
-			carregarTreinamentos()
-		}
-		catch {
-			/* Erro caso a API esteja desligada */
-		}
-	}, [])
-
-	/* Função para abrir um modal */
-	function exibirModal(idModal) {
-		const modalHTML = document.getElementById(idModal);
-		const modal = new bootstrap.Modal(modalHTML);
-		modal.show();
-	}
-
-	/* Função para cadastrar um novo treinamento */
-	function criarTreinamento() {
-		// Criando o objeto do treinamento
-		const dadosTreinamento = {
-			nome: "sadasd",
-			descricao: "dsad"
-		}
-
-		// Fazendo a requisição para criar o treinamento
-		fetch('http://localhost:3000/api/treinamentos', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(dadosTreinamento)
-		}).then(res => {
-			res.json()
-		}).then(data => {
+			// Verificando se há um usuário logado
 			if (data.sucesso) {
+				sessionStorage.setItem('usuario', JSON.stringify(data.dados));
+				setUsuario(data.dados);
+			}
+		}
 
+		carregarUsuario();
+	}, [])
+
+	/* Carregando os treinamentos oferecidos pelo usuário*/
+	useEffect(() => {
+		if (usuario.id) {
+			try {
+				async function carregarTreinamentos() {
+					const res = await fetch(`http://localhost:3000/api/treinamentos/criador/${usuario.id}`);
+					const data = await res.json();
+
+					if (data.sucesso) {
+						console.log(data.dados);
+
+						setTreinamentosOferecidos(data.dados);
+					}
+					else {
+						console.log(data.mensagem);
+					}
+				}
+
+				carregarTreinamentos()
 			}
-			else {
-				console.log(data.mensagem);
+			catch {
+				/* Erro caso a API esteja desligada */
 			}
-		})
-	};
+		}
+	}, [usuario])
+
+	/* Carregando os treinamentos realizados pelo usuário*/
+	useEffect(() => {
+		if (usuario.id) {
+			try {
+				async function carregarTreinamentos() {
+					const res = await fetch(`http://localhost:3000/api/treinamentos/${usuario.id}`);
+					const data = await res.json();
+
+					if (data.sucesso) {
+						console.log(data.dados);
+
+						setTreinamentosRealizados(data.dados);
+					}
+					else {
+						console.log(data.mensagem);
+					}
+				}
+
+				carregarTreinamentos()
+			}
+			catch {
+				/* Erro caso a API esteja desligada */
+			}
+		}
+	}, [usuario])
 
 	return (
 		<>
 			<div className="container py-4">
 				{/* Titulo da página*/}
 				<div className="d-flex flex-column justify-content-between mb-3">
-					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Administração</h1></div>
-					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo, {usuario?.nome}</p>
+					<div className="bottom-bordaAzulGM ps-3 col-12"><h1 className="h3 mb-0 fw-bold fs-2">Painel de Controle</h1></div>
+					<p className="text-muted small mt-1 ps-3 fs-6">Bem vindo(a), {usuario?.nome}</p>
 				</div>
 
 				{/* Lista e ações */}
 				<div className="row g-3">
 
 					{/* Listagem de treinamentos */}
-					<TreinamentosLista treinamentos={treinamentos} />
-
-					{/* Ações Rápidas */}
-					< AcoesRapidas />
-
-
-					{/* // TESTANDO GRÁFICOS = = = = = = = = = = = = = = = = = = = = */}
-					<div className="col-lg-6">
-						<div className="col-12 bg-white pe-2 rounded shadow-sm">
-							<Grafico1 />
-						</div>
+					<div className="col-lg-7">
+						<TreinamentosLista treinamentosRealizados={treinamentosRealizados ?? []} treinamentosOfertados={treinamentosOferecidos ?? []} tipoUsuario={usuario.tipo} />
 					</div>
 
-					<div className="col-lg-6">
-						<div className="col-12 bg-white ps-2 rounded shadow-sm">
-							<BarChart />
+					{/* Gráficos */}
+					<div className="col-lg-5">
+						{/* Gráfico de pizza */}
+						<div className="col-12 h-50 pb-2">
+							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
+								<EstadosTreinamentos treinamentos={treinamentosRealizados} />
+							</div>
+						</div>
+
+						{/* Grafico de treinamento realizado*/}
+						<div className="col-12 h-50 pt-2">
+							<div className="h-100 col-12 bg-white rounded shadow-sm p-3">
+								<TreinamentosRealizados />
+							</div>
 						</div>
 					</div>
-
-					<StackedBarChart />
-					{/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */}
-
 				</div>
 			</div>
 		</>
 	);
 }
 
-
-/*
-{ id: 1, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 2, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 3, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 4, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 5, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 6, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 7, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 8, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() },
-		{ id: 9, nome: "Treinamento 1", descricao: "Treinamento de como passar pretinho no pneu", estado: "Pendente", dataCriacao: Date.now() },
-		{ id: 10, nome: "Treinamento 2", descricao: "Treinamento de como usar um paquimetro", estado: "Concluido", dataCriacao: Date.now() },
-		{ id: 11, nome: "Treinamento 3", descricao: "Treinamento de como usar uma furadeira no chão", estado: "Em andamento", dataCriacao: Date.now() },
-		{ id: 12, nome: "Treinamento 4", descricao: "Treinamento de como subir em uma escada pela parte de cima", estado: "Cancelado", dataCriacao: Date.now() }
-*/

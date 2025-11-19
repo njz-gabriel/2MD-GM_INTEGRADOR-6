@@ -5,7 +5,6 @@ SELECT * FROM logs;
 select * from treinamentos;
 select * from participacoes;
 select * from sessoes;
-select * from participacoes;
 select * from certificados;
 
 insert into usuarios (nome, email, senha, id_equipe) values 

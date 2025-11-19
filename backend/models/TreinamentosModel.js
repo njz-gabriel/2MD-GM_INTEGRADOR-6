@@ -31,7 +31,7 @@ class TreinamentoModel {
             const connection = await getConnection();
 
             try {
-                const sql = `SELECT * FROM treinamentos t INNER JOIN participacoes p on p.idTreinamento = t.id WHERE p.idParticipante = ${id} ORDER BI t.id DESC`;
+                const sql = `SELECT * FROM treinamentos t INNER JOIN participacoes p on p.idTreinamento = t.id WHERE p.idParticipante = ${id} ORDER BY t.id DESC`;
 
                 const [treinamentos] = await connection.query(sql);
 

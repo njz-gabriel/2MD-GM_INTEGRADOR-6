@@ -40,7 +40,7 @@ export default function CardMembros({
 			</div>
 
 			<div className=" rounded-3 mt-n3 card-body">
-				<h6 className="fw-700 dark-color mb-1">{pessoa.nome}</h6>
+				<h6 className="fw-700 dark-color mb-1" style={{height: '50px'}}>{pessoa.nome}</h6>
 				<small>{
 					pessoa.tipo === 'ft' ? ('Facilitador de time') : ('Membro de time')
 				}</small>
